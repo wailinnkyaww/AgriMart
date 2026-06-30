@@ -17,17 +17,19 @@ import HarvestRecords from "../pages/Farmer/HarvestRecords/HarvestRecords";
 import MyContracts from "../pages/Farmer/MyContracts/MyContracts";
 import Notifications from "../pages/Farmer/Notifications/Notifications";
 import Payment from "../pages/Farmer/Payment/Payment";
-import Profile from "../pages/Farmer/Profile/Profile";
+import Profile from "../pages/Farmer/FarmerProfile/FarmerProfile";
 
 import BuyerDashboard from "../pages/Buyer/Dashboard/Dashboard";
 import ContractRequest from "../pages/Buyer/ContractRequests/ContractRequest";
 import Farmers from "../pages/Buyer/Farmers/Farmers";
 import AdminNotifications from "../pages/Buyer/Notifications/Notifications";
 import BuyerPayment from "../pages/Buyer/Payment/Payment";
-import BuyerProfile from "../pages/Buyer/Profile/Profile";
+import BuyerProfile from "../pages/Buyer/BuyerProfile/BuyerProfile";
 import Reports from "../pages/Buyer/Reports/Reports";
 import RicePurchases from "../pages/Buyer/RicePurchases/RicePurchases";
 import CreateContract from "../pages/Buyer/CreateContract/CreateContract";
+import EditFarmerProfile from "../pages/Farmer/EditFarmerProfile/EditFarmerProfile";
+import EditBuyerProfile from "../pages/Buyer/EditBuyerProfile/EditBuyerProfile";
 
 export const AppRoutes = () => (
   <Routes>
@@ -51,6 +53,7 @@ export const AppRoutes = () => (
     <Route path="/farmer/notifications" element={<Notifications />} />
     <Route path="/farmer/payment" element={<Payment />} />
     <Route path="/farmer/profile" element={<Profile />} />
+    <Route path="/farmer/edit-profile" element={<EditFarmerProfile />} />
     {/* buyer route */}
     <Route path="/buyer/contracts" element={<ContractRequest />} />
     <Route path="/buyer/create-contract" element={<CreateContract />} />
@@ -59,6 +62,7 @@ export const AppRoutes = () => (
     <Route path="/buyer/notifications" element={<AdminNotifications />} />
     <Route path="/buyer/payment" element={<BuyerPayment />} />
     <Route path="/buyer/profile" element={<BuyerProfile />} />
+    <Route path="/buyer/edit-profile" element={<EditBuyerProfile />} />
     <Route path="/buyer/reports" element={<Reports />} />
     <Route path="/buyer/purchases" element={<RicePurchases />} />
   </Routes>

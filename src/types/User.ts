@@ -1,12 +1,20 @@
-export type UserRole = "Farmer" | "Buyer" | "Admin";
+export type UserRole = "farmer" | "buyer";
 
 export interface User {
   uid: string;
+
+  // Basic Information
   fullName: string;
   email: string;
-  phone?: string;
+  phone: string;
+
+  // Authentication
   role: UserRole;
-  photoURL?: string;
-  address?: string;
-  createdAt: string;
+
+  // Profile
+  photoURL: string;
+
+  // Timestamps
+  createdAt: Date;
+  updatedAt: Date;
 }

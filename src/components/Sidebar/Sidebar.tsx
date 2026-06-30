@@ -191,6 +191,12 @@ function Sidebar() {
               </li>
 
               <li>
+                <Link className="link" to="/farmer/profile">
+                  Profile
+                </Link>
+              </li>
+
+              <li>
                 <Link className="link" to="/farmer/myContracts">
                   My Contracts
                 </Link>
