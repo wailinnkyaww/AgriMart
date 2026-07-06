@@ -12,7 +12,7 @@ export interface User {
   role: UserRole;
 
   // Profile
-  photoURL: string;
+  profileImage: string;
 
   // Timestamps
   createdAt: Date;

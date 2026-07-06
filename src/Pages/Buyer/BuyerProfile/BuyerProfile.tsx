@@ -48,7 +48,7 @@ const BuyerProfile = () => {
       <div className="profile-card">
         <div className="profile-header">
           <img
-            src={profile.photoURL || "https://via.placeholder.com/150"}
+            src={profile.profileImage || "https://via.placeholder.com/150"}
             alt="Buyer"
             className="profile-image"
           />

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { uploadImage } from "../../../services/cloudinaryService";
 import "./EditBuyerProfile.css";
 
 import { useAuth } from "../../../context/AuthContext";
@@ -23,6 +24,7 @@ const EditBuyerProfile = () => {
     companyAddress: "",
     preferredCrops: "",
     bio: "",
+    profileImage: "",
   });
 
   useEffect(() => {
@@ -43,6 +45,7 @@ const EditBuyerProfile = () => {
               ? data.preferredCrops.join(", ")
               : "",
             bio: data.bio || "",
+            profileImage: data.profileImage || "",
           });
         }
       } catch (err) {
@@ -54,6 +57,24 @@ const EditBuyerProfile = () => {
 
     loadProfile();
   }, [firebaseUser]);
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (!file) return;
+
+    try {
+      const imageUrl = await uploadImage(file);
+
+      setFormData((prev) => ({
+        ...prev,
+        profileImage: imageUrl,
+      }));
+    } catch (error) {
+      console.error(error);
+      alert("Image upload failed.");
+    }
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -85,8 +106,8 @@ const EditBuyerProfile = () => {
           .map((crop) => crop.trim())
           .filter(Boolean),
         bio: formData.bio,
+        profileImage: formData.profileImage,
       });
-
       alert("Profile updated successfully.");
 
       navigate("/buyer/profile");
@@ -105,6 +126,15 @@ const EditBuyerProfile = () => {
   return (
     <div className="edit-profile-container">
       <form className="edit-profile-form" onSubmit={handleSubmit}>
+        <div className="profile-image-section">
+          <img
+            src={formData.profileImage || "https://via.placeholder.com/150"}
+            alt="Profile"
+            className="profile-preview"
+          />
+
+          <input type="file" accept="image/*" onChange={handleImageUpload} />
+        </div>
         <h2>Edit Buyer Profile</h2>
 
         <label>Full Name</label>

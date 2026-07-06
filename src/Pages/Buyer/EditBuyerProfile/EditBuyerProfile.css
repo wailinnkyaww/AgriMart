@@ -93,6 +93,25 @@
   cursor: not-allowed;
 }
 
+.profile-image-section {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.profile-preview {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ddd;
+  margin-bottom: 15px;
+}
+
+.profile-image-section input {
+  display: block;
+  margin: 0 auto;
+}
+
 @media (max-width: 768px) {
   .edit-profile-container {
     padding: 20px 15px;
