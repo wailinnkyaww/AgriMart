@@ -1,25 +1,22 @@
 import "./ContractCard.css";
+import type { Contract } from "../../../types/Contract";
+import ApplyButton from "../ApplyButton/ApplyButton";
 
 interface ContractCardProps {
-  contract: {
-    id: string;
-    title: string;
-    crop: string;
-    farmer: string;
-    location: string;
-    quantity: number;
-    unit: string;
-    price: number;
-    deliveryDate: string;
-    image: string;
-    status: string;
-  };
-
+  contract: Contract;
+  currentUserId: string | undefined;
   onApply: (id: string) => void;
   onView: (id: string) => void;
+  onRefresh: () => Promise<void>;
 }
 
-const ContractCard = ({ contract, onApply, onView }: ContractCardProps) => {
+const ContractCard = ({
+  contract,
+  currentUserId,
+  onApply,
+  onView,
+  onRefresh,
+}: ContractCardProps) => {
   return (
     <div className="contract-card">
       <div className="contract-image">
@@ -30,10 +27,6 @@ const ContractCard = ({ contract, onApply, onView }: ContractCardProps) => {
         <h3>{contract.title}</h3>
 
         <div className="contract-info">
-          <p>
-            <strong>Farmer:</strong> {contract.farmer}
-          </p>
-
           <p>
             <strong>Crop:</strong> {contract.crop}
           </p>
@@ -53,6 +46,12 @@ const ContractCard = ({ contract, onApply, onView }: ContractCardProps) => {
           <p>
             <strong>Delivery:</strong> {contract.deliveryDate}
           </p>
+          <p>
+            {contract.applicants.length > 0 && <strong>Farmer:</strong>}
+            {contract.applicants?.map((applicant, index) => (
+              <span key={index}>{applicant.name || "Unknown Applicant"},</span>
+            ))}
+          </p>
         </div>
 
         <div className="contract-footer">
@@ -64,10 +63,7 @@ const ContractCard = ({ contract, onApply, onView }: ContractCardProps) => {
             <button className="view-btn" onClick={() => onView(contract.id)}>
               View Details
             </button>
-
-            <button className="apply-btn" onClick={() => onApply(contract.id)}>
-              Apply
-            </button>
+            <ApplyButton contract={contract} onApplied={onRefresh} />
           </div>
         </div>
       </div>

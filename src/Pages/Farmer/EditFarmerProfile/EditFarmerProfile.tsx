@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./EditFarmerProfile.css";
 
 import { useAuth } from "../../../context/AuthContext";
+import { uploadImage } from "../../../services/cloudinaryService";
 import {
   getUserProfile,
   updateUserProfile,
@@ -24,6 +25,7 @@ const EditFarmerProfile = () => {
     mainCrops: "",
     farmingExperience: 0,
     bio: "",
+    profileImage: "",
   });
 
   useEffect(() => {
@@ -43,6 +45,7 @@ const EditFarmerProfile = () => {
             mainCrops: data.mainCrops ? data.mainCrops.join(", ") : "",
             farmingExperience: data.farmingExperience || 0,
             bio: data.bio || "",
+            profileImage: data.profileImage || "",
           });
         }
       } catch (err) {
@@ -54,6 +57,24 @@ const EditFarmerProfile = () => {
 
     loadProfile();
   }, [firebaseUser]);
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (!file) return;
+
+    try {
+      const imageUrl = await uploadImage(file);
+
+      setFormData((prev) => ({
+        ...prev,
+        profileImage: imageUrl,
+      }));
+    } catch (error) {
+      console.error(error);
+      alert("Image upload failed.");
+    }
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -89,6 +110,7 @@ const EditFarmerProfile = () => {
           .filter(Boolean),
         farmingExperience: formData.farmingExperience,
         bio: formData.bio,
+        profileImage: formData.profileImage,
       });
 
       alert("Profile updated successfully.");
@@ -110,7 +132,15 @@ const EditFarmerProfile = () => {
     <div className="edit-profile-container">
       <form className="edit-profile-form" onSubmit={handleSubmit}>
         <h2>Edit Farmer Profile</h2>
+        <div className="profile-image-section">
+          <img
+            src={formData.profileImage || "https://via.placeholder.com/150"}
+            alt="Profile"
+            className="profile-preview"
+          />
 
+          <input type="file" accept="image/*" onChange={handleImageUpload} />
+        </div>
         <label>Full Name</label>
         <input
           name="fullName"

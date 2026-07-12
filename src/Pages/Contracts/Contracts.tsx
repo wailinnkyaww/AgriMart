@@ -1,26 +1,13 @@
-import { useEffect, useState } from "react";
 import "./Contracts.css";
-
+import { useEffect, useState } from "react";
+import { applyContract } from "../../services/applicationService";
+import { useAuth } from "../../context/AuthContext";
+import { getContracts } from "../../services/contractService";
+import type { Contract } from "../../types/Contract";
 import ContractCard from "./ContractCard/ContractCard";
 import ContractFilter from "./ContractFilter/ContractFilter";
 import ContractDetails from "./ContractDetails/ContractDetails";
 import CreateContractModal from "./CreateContractModal/CreateContractModal";
-import { getContracts } from "../../services/contractService";
-import type { Contract } from "../../types/Contract";
-
-interface Contract {
-  id: string;
-  title: string;
-  crop: string;
-  farmer: string;
-  location: string;
-  quantity: number;
-  unit: string;
-  price: number;
-  deliveryDate: string;
-  image: string;
-  status: string;
-}
 
 const Contracts = () => {
   const [contracts, setContracts] = useState<Contract[]>([]);
@@ -31,30 +18,46 @@ const Contracts = () => {
   const [status, setStatus] = useState("");
   const [location, setLocation] = useState("");
   //contractdetails
+  const { user } = useAuth();
   const [selectedContract, setSelectedContract] = useState<Contract | null>(
     null,
   );
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
-  const handleCreateContract = (newContract: Contract) => {
-    setContracts((prev) => [newContract, ...prev]);
+  const loadContracts = async () => {
+    try {
+      const data = await getContracts();
+      setContracts(data);
+    } catch (error) {
+      console.error("Error fetching contracts:", error);
+    }
   };
 
   useEffect(() => {
-    const fetchContracts = async () => {
-      try {
-        const data = await getContracts();
-        setContracts(data);
-      } catch (error) {
-        console.error("Error fetching contracts:", error);
-      }
-    };
-
-    fetchContracts();
+    loadContracts();
   }, []);
 
-  const handleApply = (id: string) => {
-    alert(`Applied to Contract ${id}`);
+  const handleApply = async (id: string) => {
+    if (!user) {
+      alert("Please login before applying");
+      return;
+    }
+
+    try {
+      await applyContract(id, {
+        userId: user.uid,
+        name: user.fullName,
+        role: user.role,
+        status: "Pending",
+        appliedAt: new Date().toISOString(),
+      });
+
+      alert("Application submitted successfully");
+    } catch (error) {
+      console.error("Apply contract error:", error);
+
+      alert("Failed to apply contract");
+    }
   };
 
   const handleView = (id: string) => {
@@ -116,8 +119,10 @@ const Contracts = () => {
             <ContractCard
               key={contract.id}
               contract={contract}
+              currentUserId={user?.uid}
               onApply={handleApply}
               onView={handleView}
+              onRefresh={loadContracts}
             />
           ))}
         </div>
@@ -130,7 +135,7 @@ const Contracts = () => {
       <CreateContractModal
         isOpen={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
-        onCreate={handleCreateContract}
+        onCreated={loadContracts}
       />
     </div>
   );

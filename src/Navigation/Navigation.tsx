@@ -20,7 +20,7 @@ import Payment from "../pages/Farmer/Payment/Payment";
 import Profile from "../pages/Farmer/FarmerProfile/FarmerProfile";
 
 import BuyerDashboard from "../pages/Buyer/Dashboard/Dashboard";
-import ContractRequest from "../pages/Buyer/ContractRequests/ContractRequest";
+import ContractRequest from "../pages/Buyer/ContractRequests/ContractRequests";
 import Farmers from "../pages/Buyer/Farmers/Farmers";
 import AdminNotifications from "../pages/Buyer/Notifications/Notifications";
 import BuyerPayment from "../pages/Buyer/Payment/Payment";

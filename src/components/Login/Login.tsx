@@ -29,8 +29,12 @@ const Login = () => {
       setSuccessMsg("Logged in successfully! Redirecting...");
       setTimeout(() => {
         if (userProfile.role === "Buyer") {
+          localStorage.setItem("user_Id", userProfile.uid);
+          localStorage.setItem("user_Role", "Buyer");
           navigate("/buyer/dashboard");
         } else if (userProfile.role === "Farmer") {
+          localStorage.setItem("user_Id", userProfile.uid);
+          localStorage.setItem("user_Role", "Farmer");
           navigate("/farmer/dashboard");
         }
       }, 1000);

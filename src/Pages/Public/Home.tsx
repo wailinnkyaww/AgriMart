@@ -7,8 +7,8 @@ const HomePage = () => {
     <div style={styles.homeContainer}>
       {/* 1. Banner Section */}
       <section className="banner" style={styles.banner}>
-        <h1>Sustainable Agriculture</h1>
-        <p>Cultivating a better future through technology.</p>
+        <h1>ရေရှည်တည်တံ့သော စိုက်ပျိုးရေး</h1>
+        <p>နည်းပညာအသုံးပြု၍ ပိုမိုကောင်းမွန်သော အနာဂတ်ကို မြှင့်တင့်ခြင်း</p>
       </section>
 
       {/* 2. Product Categories (Swiper: 4 Columns) */}
@@ -95,7 +95,6 @@ const styles = {
     border: "none",
   },
 } as const;
-
 
 export default function Home() {
   return (

@@ -7,9 +7,10 @@ import "./CreateContractModal.css";
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  onCreated: () => Promise<void>;
 }
 
-const CreateContractModal = ({ isOpen, onClose }: Props) => {
+const CreateContractModal = ({ isOpen, onClose, onCreated }: Props) => {
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -61,8 +62,24 @@ const CreateContractModal = ({ isOpen, onClose }: Props) => {
         updatedAt: new Date().toISOString(),
       });
 
+      await onCreated();
       alert("Contract Created Successfully!");
-      onClose(); // Close modal on success
+      setFormData({
+        title: "",
+        contractType: "",
+        crop: "",
+        quantity: "",
+        price: "",
+        location: "",
+        startDate: "",
+        endDate: "",
+        deliveryDate: "",
+        description: "",
+        requirements: "",
+        paymentMethod: "Cash",
+        image: "",
+      });
+      onClose();
     } catch (err) {
       console.error(err);
       alert("Something went wrong.");

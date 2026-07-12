@@ -1,0 +1,134 @@
+.applicant-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: #fff;
+
+  border: 1px solid #e5e5e5;
+
+  border-radius: 12px;
+
+  padding: 20px;
+
+  transition: .25s;
+}
+
+.applicant-card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+}
+
+.applicant-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.avatar {
+  width: 55px;
+  height: 55px;
+
+  border-radius: 50%;
+
+  background: #2d8cff;
+
+  color: white;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 20px;
+
+  font-weight: bold;
+}
+
+.applicant-info h3 {
+  margin: 0;
+}
+
+.applicant-info p {
+  margin: 4px 0;
+  color: #666;
+}
+
+.badge {
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+.badge.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.badge.accepted {
+  background: #d4edda;
+  color: #155724;
+}
+
+.badge.rejected {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.applicant-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.winner-badge {
+  margin-top: 8px;
+  color: #28a745;
+  font-weight: bold;
+}
+
+.accept-btn,
+.reject-btn,
+.accepted-btn,
+.rejected-btn {
+  border: none;
+
+  padding: 10px 18px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+}
+
+.accept-btn {
+  background: #28a745;
+  color: white;
+}
+
+.accept-btn:hover {
+  background: #218838;
+}
+
+.reject-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.reject-btn:hover {
+  background: #c82333;
+}
+
+.accepted-btn {
+  background: #28a745;
+  color: white;
+}
+
+.rejected-btn {
+  background: #6c757d;
+  color: white;
+}

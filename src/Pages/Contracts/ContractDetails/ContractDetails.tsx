@@ -1,5 +1,6 @@
 import "./ContractDetails.css";
 import type { Contract } from "../../../types/Contract";
+import { useAuth } from "../../../context/AuthContext";
 
 interface Props {
   contract: Contract | null;
@@ -8,8 +9,11 @@ interface Props {
 }
 
 const ContractDetails = ({ contract, onClose, onApply }: Props) => {
-  if (!contract) return null;
+  const user = useAuth();
+  const buyerId = "2";
 
+  if (!contract) return null;
+  const isOwner = buyerId === contract.buyerId;
   return (
     <div className="contract-modal-overlay">
       <div className="contract-modal">
@@ -103,12 +107,9 @@ const ContractDetails = ({ contract, onClose, onApply }: Props) => {
         </div>
 
         <div className="modal-actions">
-          {contract.status === "Open" && (
-            <button
-              className="apply-button"
-              onClick={() => onApply(contract.id)}
-            >
-              Apply Contract
+          {user?.role === "Farmer" && contract.status === "Open" && (
+            <button className="apply-btn" onClick={() => onApply(contract.id)}>
+              Apply
             </button>
           )}
 
