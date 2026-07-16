@@ -3,6 +3,7 @@ import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "../../../config/firebase";
 import { useAuth } from "../../../context/AuthContext";
 import type { Contract } from "../../../types/Contract";
+import { createNotification } from "../../../services/notificationService";
 
 interface ApplyButtonProps {
   contract: Contract;
@@ -45,6 +46,14 @@ const ApplyButton = ({ contract, onApplied }: ApplyButtonProps) => {
           appliedAt: new Date().toISOString(),
           status: "Pending",
         }),
+      });
+      await createNotification({
+        userId: contract.creator.uid,
+        title: "New Application",
+        message: `${user.fullName} applied for "${contract.title}".`,
+        type: "Application",
+        isRead: false,
+        createdAt: new Date().toISOString(),
       });
 
       await onApplied();

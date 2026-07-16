@@ -1,23 +1,23 @@
-export type PaymentStatus = "Pending" | "Paid" | "Failed" | "Refunded";
-
 export interface Payment {
-  id?: string;
+  id: string;
 
   contractId: string;
 
-  payerId: string;
+  contractTitle: string;
 
-  receiverId: string;
+  buyerId: string;
+  buyerName: string;
+
+  farmerId: string;
+  farmerName: string;
 
   amount: number;
 
-  paymentMethod: "Cash" | "Bank Transfer" | "KBZ Pay" | "Wave Money";
+  paymentMethod: string;
 
-  transactionId?: string;
-
-  status: PaymentStatus;
-
-  paidAt?: string;
+  status: "Pending" | "Paid" | "Cancelled";
 
   createdAt: string;
+
+  paidAt?: string;
 }

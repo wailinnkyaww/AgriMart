@@ -1,13 +1,8 @@
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 import type { Contract } from "../types/Contract";
+import { createNotification } from "./notificationService";
 
-/**
- * Accept one applicant.
- * - Selected applicant -> Accepted
- * - All other pending applicants -> Rejected
- * - Contract -> Assigned
- */
 export const acceptApplicant = async (
   contract: Contract,
   applicantId: string,
@@ -30,6 +25,22 @@ export const acceptApplicant = async (
     selectedApplicant: applicantId,
     status: "Assigned",
     updatedAt: new Date().toISOString(),
+  });
+  await createNotification({
+    userId: applicantId,
+    title: "Application Accepted",
+    message: `Congratulations! You have been accepted for "${contract.title}".`,
+    type: "Contract",
+    isRead: false,
+    createdAt: new Date().toISOString(),
+  });
+  await createNotification({
+    userId: applicantId,
+    title: "Application Rejected",
+    message: `Your application for "${contract.title}" was not selected.`,
+    type: "Application",
+    isRead: false,
+    createdAt: new Date().toISOString(),
   });
 };
 

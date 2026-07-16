@@ -1,0 +1,58 @@
+.buyer-payments {
+  padding: 30px;
+  min-height: 100vh;
+  background: #f5f7fb;
+}
+
+.page-header {
+  margin-bottom: 30px;
+}
+
+.page-header h1 {
+  margin: 0;
+  color: #222;
+}
+
+.page-header p {
+  margin-top: 8px;
+  color: #666;
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 22px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  font-size: 22px;
+}
+
+.empty-state {
+  background: white;
+  padding: 60px;
+  text-align: center;
+  border-radius: 14px;
+}
+
+.empty-state h3 {
+  margin-bottom: 10px;
+}
+
+.empty-state p {
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .buyer-payments {
+    padding: 20px;
+  }
+
+  .payment-grid {
+    grid-template-columns: 1fr;
+  }
+}

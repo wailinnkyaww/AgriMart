@@ -1,4 +1,4 @@
-.payment-container {
+/* .payment-container {
   padding: 25px;
   background: #f5f7fa;
   min-height: 100vh;
@@ -137,4 +137,84 @@
   .stats {
     grid-template-columns: 1fr;
   }
+}
+
+*/ .farmer-payments {
+  padding: 30px;
+  min-height: 100vh;
+  background: #f7f8fc;
+}
+
+.page-header {
+  margin-bottom: 25px;
+}
+
+.page-header h1 {
+  margin-bottom: 6px;
+}
+
+.page-header p {
+  color: #666;
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 22px;
+}
+
+.payment-card {
+  background: white;
+  border-radius: 12px;
+  padding: 22px;
+  border: 1px solid #e5e5e5;
+  transition: .3s;
+}
+
+.payment-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
+}
+
+.payment-card h2 {
+  margin-bottom: 18px;
+}
+
+.payment-card p {
+  margin: 10px 0;
+}
+
+.payment-status {
+  margin-left: 8px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.payment-status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.payment-status.paid {
+  background: #d4edda;
+  color: #155724;
+}
+
+.payment-status.cancelled {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.empty-state {
+  background: white;
+  padding: 60px;
+  text-align: center;
+  border-radius: 12px;
+}
+
+.loading {
+  padding: 40px;
+  text-align: center;
+  font-size: 20px;
 }

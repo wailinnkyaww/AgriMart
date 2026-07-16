@@ -15,21 +15,24 @@ import CompanyOffers from "../pages/Farmer/CompanyOffers/CompanyOffers";
 import Dashboard from "../pages/Farmer/Dashboard/Dashboard";
 import HarvestRecords from "../pages/Farmer/HarvestRecords/HarvestRecords";
 import MyContracts from "../pages/Farmer/MyContracts/MyContracts";
+import MyApplications from "../pages/Farmer/MyApplications/MyApplications";
 import Notifications from "../pages/Farmer/Notifications/Notifications";
-import Payment from "../pages/Farmer/Payment/Payment";
+import Payment from "../pages/Farmer/Payment/Payments";
 import Profile from "../pages/Farmer/FarmerProfile/FarmerProfile";
+import Reports from "../pages/Farmer/Reports/Reports";
 
 import BuyerDashboard from "../pages/Buyer/Dashboard/Dashboard";
 import ContractRequest from "../pages/Buyer/ContractRequests/ContractRequests";
 import Farmers from "../pages/Buyer/Farmers/Farmers";
 import AdminNotifications from "../pages/Buyer/Notifications/Notifications";
-import BuyerPayment from "../pages/Buyer/Payment/Payment";
+import BuyerPayment from "../pages/Buyer/Payment/Payments";
 import BuyerProfile from "../pages/Buyer/BuyerProfile/BuyerProfile";
-import Reports from "../pages/Buyer/Reports/Reports";
+import BuyerReports from "../pages/Buyer/Reports/Reports";
 import RicePurchases from "../pages/Buyer/RicePurchases/RicePurchases";
 import CreateContract from "../pages/Buyer/CreateContract/CreateContract";
 import EditFarmerProfile from "../pages/Farmer/EditFarmerProfile/EditFarmerProfile";
 import EditBuyerProfile from "../pages/Buyer/EditBuyerProfile/EditBuyerProfile";
+import HarvestRecordsBuyer from "../pages/Buyer/HarvestRecords/HarvestRecords";
 
 export const AppRoutes = () => (
   <Routes>
@@ -50,10 +53,12 @@ export const AppRoutes = () => (
     <Route path="/farmer/dashboard" element={<Dashboard />} />
     <Route path="/farmer/harvestRecords" element={<HarvestRecords />} />
     <Route path="/farmer/myContracts" element={<MyContracts />} />
+    <Route path="/farmer/myApplications" element={<MyApplications />} />
     <Route path="/farmer/notifications" element={<Notifications />} />
     <Route path="/farmer/payment" element={<Payment />} />
     <Route path="/farmer/profile" element={<Profile />} />
     <Route path="/farmer/edit-profile" element={<EditFarmerProfile />} />
+    <Route path="/farmer/reports" element={<Reports />} />
     {/* buyer route */}
     <Route path="/buyer/contracts" element={<ContractRequest />} />
     <Route path="/buyer/create-contract" element={<CreateContract />} />
@@ -63,7 +68,9 @@ export const AppRoutes = () => (
     <Route path="/buyer/payment" element={<BuyerPayment />} />
     <Route path="/buyer/profile" element={<BuyerProfile />} />
     <Route path="/buyer/edit-profile" element={<EditBuyerProfile />} />
-    <Route path="/buyer/reports" element={<Reports />} />
+    <Route path="/buyer/reports" element={<BuyerReports />} />
     <Route path="/buyer/purchases" element={<RicePurchases />} />
+    <Route path="/buyer/harvestRecords" element={<HarvestRecordsBuyer />} />
+    <Route path="*" element={<h1>404 Not Found</h1>} />
   </Routes>
 );

@@ -1,21 +1,24 @@
-export type HarvestStatus = "Growing" | "Ready" | "Harvested" | "Delivered";
-
 export interface Harvest {
-  id?: string;
+  id: string;
 
   contractId: string;
+
+  farmerId: string;
+  farmerName: string;
 
   crop: string;
 
   quantity: number;
 
-  expectedHarvestDate: string;
+  harvestDate: string;
 
-  actualHarvestDate?: string;
+  quality: string;
 
-  deliveryDate?: string;
+  notes: string;
 
-  status: HarvestStatus;
+  image?: string;
 
-  notes?: string;
+  status: "Submitted";
+
+  createdAt: string;
 }

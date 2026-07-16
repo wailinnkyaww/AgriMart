@@ -24,27 +24,37 @@
 // }
 
 // export default App;
-
 import { BrowserRouter, useLocation } from "react-router-dom";
 import { AppRoutes } from "./navigation/Navigation";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Footer from "./components/Footer/Footer";
+import { useAuth } from "./context/AuthContext";
 
 function Layout() {
+  const { user } = useAuth();
   const location = useLocation();
 
-  // Check if the current path is exactly "/"
+  // Hide sidebar on Home page
   const isHomePage = location.pathname === "/";
 
+  // Show sidebar only when logged in and NOT on Home page
+  const showSidebar = !!user && !isHomePage;
+
   return (
-    <div className="app-container">
+    <div>
       <Header />
 
       <div style={{ display: "flex" }}>
-        {!isHomePage && <Sidebar />}
+        {showSidebar && <Sidebar />}
 
-        <main style={{ flex: 1, padding: "20px", maxWidth: "1520px" }}>
+        <main
+          style={{
+            flex: 1,
+            maxWidth: "1520px",
+            margin: "0 auto",
+          }}
+        >
           <AppRoutes />
         </main>
       </div>

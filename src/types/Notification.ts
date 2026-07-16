@@ -1,13 +1,5 @@
-export type NotificationType =
-  | "Contract"
-  | "Application"
-  | "Agreement"
-  | "Payment"
-  | "Harvest"
-  | "System";
-
 export interface Notification {
-  id?: string;
+  id: string;
 
   userId: string;
 
@@ -15,7 +7,7 @@ export interface Notification {
 
   message: string;
 
-  type: NotificationType;
+  type: "Application" | "Contract" | "Payment" | "System";
 
   isRead: boolean;
 

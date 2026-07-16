@@ -2,6 +2,7 @@ import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../config/firebase";
 import { useAuth } from "../../../context/AuthContext";
+import { uploadImage } from "../../../services/cloudinaryService";
 import "./CreateContractModal.css";
 
 interface Props {
@@ -30,6 +31,23 @@ const CreateContractModal = ({ isOpen, onClose, onCreated }: Props) => {
   });
 
   if (!isOpen) return null;
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (!file) return;
+
+    try {
+      const imageUrl = await uploadImage(file);
+
+      setFormData((prev) => ({
+        ...prev,
+        image: imageUrl,
+      }));
+    } catch (error) {
+      console.error(error);
+      alert("Image upload failed.");
+    }
+  };
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -182,13 +200,12 @@ const CreateContractModal = ({ isOpen, onClose, onCreated }: Props) => {
           </div>
 
           <div className="form-group">
-            <label>Image URL</label>
+            <label>Image</label>
             <input
-              type="text"
+              type="file"
               name="image"
-              value={formData.image}
-              placeholder="https://example.com/image.jpg"
-              onChange={handleChange}
+              accept="image/*"
+              onChange={handleImageUpload}
             />
           </div>
           <div className="row">

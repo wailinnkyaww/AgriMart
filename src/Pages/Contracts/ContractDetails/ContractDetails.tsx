@@ -5,15 +5,13 @@ import { useAuth } from "../../../context/AuthContext";
 interface Props {
   contract: Contract | null;
   onClose: () => void;
-  onApply: (id: string) => void;
+  onApply?: (id: string) => void;
 }
 
 const ContractDetails = ({ contract, onClose, onApply }: Props) => {
-  const user = useAuth();
-  const buyerId = "2";
+  const { user } = useAuth();
 
   if (!contract) return null;
-  const isOwner = buyerId === contract.buyerId;
   return (
     <div className="contract-modal-overlay">
       <div className="contract-modal">
@@ -107,7 +105,7 @@ const ContractDetails = ({ contract, onClose, onApply }: Props) => {
         </div>
 
         <div className="modal-actions">
-          {user?.role === "Farmer" && contract.status === "Open" && (
+          {onApply && user?.role === "Farmer" && contract.status === "Open" && (
             <button className="apply-btn" onClick={() => onApply(contract.id)}>
               Apply
             </button>

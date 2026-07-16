@@ -82,7 +82,7 @@ export interface Contract {
 
   creator: Creator;
 
-  applicants: Applicant[];
+  applicants: Applicant[] | null;
 
   status: string;
   title: string;
@@ -93,7 +93,7 @@ export interface Contract {
   location: string;
   deliveryDate: string;
   endDate: string;
-  selectedApplicant: string | null;
+  selectedApplicant: Applicant | null;
   agreementId: string | null;
   image?: string;
   createdAt: string;

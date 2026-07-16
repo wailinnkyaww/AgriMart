@@ -53,14 +53,50 @@
 // export default Sidebar;
 
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import "./Sidebar.css";
 import { useAuth } from "../../context/AuthContext";
+import { getUserProfile } from "../../services/userService";
 
 function Sidebar() {
   const { user } = useAuth();
+  const [profile, setProfile] = useState<any>(null);
+
+  useEffect(() => {
+    const loadProfile = async () => {
+      if (!user) return;
+
+      try {
+        const data = await getUserProfile(user.uid);
+        setProfile(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    loadProfile();
+  }, [user]);
 
   return (
     <aside className="sidebar">
+      {profile && (
+        <div className="sidebar-user">
+          <img
+            src={
+              profile.profileImage ||
+              "https://ui-avatars.com/api/?name=User&background=2e7d32&color=fff"
+            }
+            alt={profile.fullName}
+            className="sidebar-avatar"
+          />
+
+          <div className="sidebar-user-info">
+            <h3>{profile.fullName}</h3>
+            <span>{profile.role}</span>
+          </div>
+        </div>
+      )}
+
       {user ? (
         <ul className="sidebar-menu">
           {/* ================= ADMIN ================= */}
@@ -156,6 +192,12 @@ function Sidebar() {
               </li>
 
               <li>
+                <Link className="link" to="/buyer/harvestRecords">
+                  Harvest Records
+                </Link>
+              </li>
+
+              <li>
                 <Link className="link" to="/buyer/purchases">
                   Rice Purchases
                 </Link>
@@ -203,6 +245,12 @@ function Sidebar() {
               </li>
 
               <li>
+                <Link className="link" to="/farmer/myApplications">
+                  My Applications
+                </Link>
+              </li>
+
+              <li>
                 <Link className="link" to="/farmer/harvestRecords">
                   Harvest Records
                 </Link>
@@ -217,6 +265,12 @@ function Sidebar() {
               <li>
                 <Link className="link" to="/farmer/offers">
                   Company Offers
+                </Link>
+              </li>
+
+              <li>
+                <Link className="link" to="/farmer/reports">
+                  Reports
                 </Link>
               </li>
 

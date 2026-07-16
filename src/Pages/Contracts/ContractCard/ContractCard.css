@@ -90,12 +90,12 @@
 
 .contract-buttons {
   display: flex;
-  gap: 10px;
+  gap: 4px;
 }
 
 .view-btn {
   border: none;
-  padding: 10px 18px;
+  padding: 8px 16px;
   background: #6c757d;
   color: white;
   border-radius: 8px;
@@ -109,7 +109,7 @@
 
 .apply-btn {
   border: none;
-  padding: 10px 20px;
+  padding: 10px 16px;
   background: #198754;
   color: white;
   border-radius: 8px;

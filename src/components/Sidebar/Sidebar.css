@@ -5,6 +5,45 @@
   padding: 20px;
 }
 
+.sidebar-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 20px;
+}
+
+.sidebar-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-bottom: 4px;
+  object-fit: cover;
+  border: 4px solid #2e7d32;
+  background: #f3f4f6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar-user-info {
+  text-align: center;
+}
+
+.sidebar-user-info h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+}
+
+.sidebar-user-info span {
+  display: block;
+  margin-top: 3px;
+  font-size: 14px;
+  color: #d9e973;
+  text-transform: capitalize;
+}
+
 .sidebar ul {
   list-style: none;
   padding: 0;

@@ -1,0 +1,74 @@
+.payment-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 25px;
+  border: 1px solid #e8e8e8;
+  transition: .25s;
+}
+
+.payment-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+}
+
+.payment-card h2 {
+  margin-bottom: 18px;
+  color: #222;
+}
+
+.payment-info p {
+  margin: 10px 0;
+  color: #555;
+}
+
+.payment-form {
+  margin-top: 20px;
+}
+
+.payment-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.payment-form input,
+.payment-form select {
+  width: 100%;
+  padding: 11px;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.payment-btn {
+  width: 100%;
+  padding: 13px;
+  background: #2d8cff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.payment-created {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  background: #28a745;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: not-allowed;
+}
+
+.payment-btn:hover:not(:disabled) {
+  background: #0d6efd;
+}
+
+.payment-btn:disabled {
+  background: #9cbef7;
+  cursor: not-allowed;
+}

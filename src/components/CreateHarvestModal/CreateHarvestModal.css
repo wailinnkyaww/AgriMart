@@ -1,0 +1,145 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999;
+}
+
+.harvest-modal {
+  width: 650px;
+  max-width: 95%;
+  background: #fff;
+
+  border-radius: 16px;
+
+  padding: 30px;
+
+  animation: popup .25s ease;
+}
+
+@keyframes popup {
+  from {
+    opacity: 0;
+    transform: translateY(-15px) scale(.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.harvest-modal h2 {
+  margin-bottom: 25px;
+  color: #2c3e50;
+}
+
+.harvest-modal form {
+  display: flex;
+  flex-direction: column;
+}
+
+.harvest-modal label {
+  margin-bottom: 8px;
+  margin-top: 15px;
+
+  font-weight: 600;
+  color: #444;
+}
+
+.harvest-modal input,
+.harvest-modal textarea,
+.harvest-modal select {
+  width: 100%;
+
+  padding: 12px;
+
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+
+  font-size: 15px;
+
+  transition: .2s;
+}
+
+.harvest-modal input:focus,
+.harvest-modal textarea:focus,
+.harvest-modal select:focus {
+  outline: none;
+  border-color: #2d8cff;
+  box-shadow: 0 0 0 3px rgba(45, 140, 255, .15);
+}
+
+.harvest-modal textarea {
+  resize: vertical;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+
+  margin-top: 30px;
+}
+
+.cancel-btn {
+  padding: 11px 22px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #6c757d;
+  color: white;
+
+  cursor: pointer;
+
+  font-weight: 600;
+}
+
+.cancel-btn:hover {
+  background: #5a6268;
+}
+
+.submit-btn {
+  padding: 11px 24px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #28a745;
+  color: white;
+
+  cursor: pointer;
+
+  font-weight: 600;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #218838;
+}
+
+.submit-btn:disabled {
+  background: #9dd5ac;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .harvest-modal {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .modal-buttons {
+    flex-direction: column;
+  }
+
+  .cancel-btn,
+  .submit-btn {
+    width: 100%;
+  }
+}
