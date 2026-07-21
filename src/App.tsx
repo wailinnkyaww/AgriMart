@@ -28,7 +28,7 @@ import { BrowserRouter, useLocation } from "react-router-dom";
 import { AppRoutes } from "./navigation/Navigation";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
-import Footer from "./components/Footer/Footer";
+import Footer from "./pages/Public/Footer/Footer";
 import { useAuth } from "./context/AuthContext";
 
 function Layout() {

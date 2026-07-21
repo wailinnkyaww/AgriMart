@@ -4,6 +4,7 @@ import { getUserProfile } from "../../../services/userService";
 import { useAuth } from "../../../context/AuthContext";
 import type { Farmer } from "../../../types/Farmer";
 import { useNavigate } from "react-router-dom";
+import Loader from "../../../components/Loader/Loader";
 
 const FarmerProfile = () => {
   const { user, firebaseUser } = useAuth();
@@ -35,7 +36,7 @@ const FarmerProfile = () => {
   }, [firebaseUser]);
 
   if (loading) {
-    return <div className="profile-loading">Loading profile...</div>;
+    return <Loader />;
   }
 
   if (!profile) {

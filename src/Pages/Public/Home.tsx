@@ -116,7 +116,6 @@ import WhyChooseUsSection from "./WhyChooseUsSection/WhyChooseUsSection";
 import StatsSection from "./StatsSection/StatsSection";
 import HowItWorksSection from "./HowItWorksSection/HowItWorksSection";
 import ContactSection from "./ContactSection/ContactSection";
-import Footer from "./Footer/Footer";
 
 const Home = () => {
   return (
@@ -130,7 +129,6 @@ const Home = () => {
       <StatsSection />
       <HowItWorksSection />
       <ContactSection />
-      {/* <Footer /> */}
     </>
   );
 };

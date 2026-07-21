@@ -8,6 +8,7 @@ import {
   getUserProfile,
   updateUserProfile,
 } from "../../../services/userService";
+import Loader from "../../../components/Loader/Loader";
 
 const EditFarmerProfile = () => {
   const navigate = useNavigate();
@@ -125,7 +126,7 @@ const EditFarmerProfile = () => {
   };
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <Loader />;
   }
 
   return (

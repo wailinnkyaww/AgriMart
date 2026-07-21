@@ -1,6 +1,30 @@
-import { collection, getDocs, query, orderBy, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  doc,
+  orderBy,
+  where,
+  updateDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { db } from "../config/firebase";
 import type { Contract } from "../types/Contract";
+
+export const completeContract = async (contractId: string): Promise<void> => {
+  try {
+    const contractRef = doc(db, "contracts", contractId);
+
+    await updateDoc(contractRef, {
+      status: "Completed",
+      completedAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
+    });
+  } catch (error) {
+    console.error("Error completing contract:", error);
+    throw error;
+  }
+};
 
 export const getContracts = async (): Promise<Contract[]> => {
   const q = query(collection(db, "contracts"), orderBy("createdAt", "desc"));

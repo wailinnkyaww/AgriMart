@@ -178,6 +178,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { getContracts } from "../../../services/contractService";
 
 import type { Contract } from "../../../types/Contract";
+import Loader from "../../../components/Loader/Loader";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -225,7 +226,7 @@ const Dashboard = () => {
   );
 
   if (loading) {
-    return <div className="dashboard-loading">Loading Dashboard...</div>;
+    return <Loader />;
   }
 
   return (

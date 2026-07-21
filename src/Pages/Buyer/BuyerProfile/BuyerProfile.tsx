@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import { getUserProfile } from "../../../services/userService";
 import type { Buyer } from "../../../types/Buyer";
+import Loader from "../../../components/Loader/Loader";
 
 const BuyerProfile = () => {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const BuyerProfile = () => {
   }, [firebaseUser]);
 
   if (loading) {
-    return <div className="profile-loading">Loading profile...</div>;
+    return <Loader />;
   }
 
   if (!profile) {

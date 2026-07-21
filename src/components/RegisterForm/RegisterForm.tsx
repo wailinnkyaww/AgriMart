@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import "./Register.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
-const Register = () => {
+interface Props {
+  onSuccess?: () => void;
+  onSwitchLogin?: () => void;
+}
+
+const RegisterForm = ({ onSuccess, onSwitchLogin }: Props) => {
   const [step, setStep] = useState<"selection" | "register">("selection");
   const [role, setRole] = useState<"Buyer" | "Farmer" | null>(null);
 
@@ -63,8 +68,10 @@ const Register = () => {
       setSuccessMsg("Registration successful! Redirecting...");
       setTimeout(() => {
         if (role === "Buyer") {
+          onSuccess?.();
           navigate("/buyer/dashboard");
         } else {
+          onSuccess?.();
           navigate("/farmer/dashboard");
         }
       }, 1000);
@@ -90,9 +97,6 @@ const Register = () => {
     <div className="register-container">
       {step === "selection" && (
         <div className="selection-card">
-          <button onClick={handleRoleExit} className="close-role-btn-">
-            ×
-          </button>
           <h1>Welcome!</h1>
           <p>Please choose your role:</p>
 
@@ -227,9 +231,13 @@ const Register = () => {
           </form>
           <p className="register-text">
             Already have an account?{" "}
-            <Link className="register-link" to="/login">
+            <button
+              type="button"
+              className="register-link"
+              onClick={onSwitchLogin}
+            >
               Login
-            </Link>
+            </button>
           </p>
         </div>
       )}
@@ -237,4 +245,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterForm;

@@ -1,10 +1,11 @@
 import "./HarvestCard.css";
-
+import { completeContract } from "../../services/contractService";
 import type { Harvest } from "../../types/Harvest";
 
 interface Props {
   harvest: Harvest;
   isFarmer?: boolean;
+  onRefresh: () => void;
   onEdit?: (harvest: Harvest) => void;
   onDelete?: (id: string) => void;
 }
@@ -12,9 +13,23 @@ interface Props {
 const HarvestCard = ({
   harvest,
   isFarmer = false,
+  onRefresh,
   onEdit,
   onDelete,
 }: Props) => {
+  const handleCompleteContract = async () => {
+    try {
+      await completeContract(harvest.contractId);
+
+      alert("Contract completed successfully.");
+
+      onRefresh();
+    } catch (error) {
+      console.error(error);
+      alert("Failed to complete contract.");
+    }
+  };
+
   return (
     <div className="harvest-card">
       <img
@@ -71,6 +86,12 @@ const HarvestCard = ({
               Delete
             </button>
           </div>
+        )}
+
+        {harvest.status === "Submitted" && (
+          <button className="complete-btn" onClick={handleCompleteContract}>
+            Complete Contract
+          </button>
         )}
       </div>
     </div>

@@ -6,6 +6,7 @@ import type { Contract } from "../../../types/Contract";
 
 import RequestCard from "./RequestCard/RequestCard";
 import ApplicantModal from "./ApplicantModal/ApplicantModal";
+import Loader from "../../../components/Loader/Loader";
 
 const ContractRequests = () => {
   const { user } = useAuth();
@@ -56,7 +57,7 @@ const ContractRequests = () => {
   if (loading) {
     return (
       <div className="contract-requests-page">
-        <h2>Loading Contract Requests...</h2>
+        <Loader />
       </div>
     );
   }

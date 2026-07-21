@@ -1,27 +1,26 @@
 import { useEffect, useState } from "react";
 import "./HarvestRecords.css";
-
 import { useAuth } from "../../../context/AuthContext";
-
 import { getContracts } from "../../../services/contractService";
-import { getHarvests } from "../../../services/harvestService";
-
+import { getHarvests, deleteHarvest } from "../../../services/harvestService";
 import type { Harvest } from "../../../types/Harvest";
-
 import HarvestCard from "../../../components/HarvestCard/HarvestCard";
+import EditHarvestModal from "../../../components/EditHarvestModal/EditHarvestModal";
+import Loader from "../../../components/Loader/Loader";
 
 const HarvestRecords = () => {
   const { user } = useAuth();
 
   const [harvests, setHarvests] = useState<Harvest[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedHarvest, setSelectedHarvest] = useState<Harvest | null>(null);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   const loadHarvests = async () => {
     if (!user) return;
 
     try {
       const contracts = await getContracts();
-
       const allHarvests = await getHarvests();
 
       const myContracts = contracts.filter(
@@ -47,7 +46,7 @@ const HarvestRecords = () => {
   }, [user]);
 
   if (loading) {
-    return <div className="loading">Loading Harvest Records...</div>;
+    return <Loader />;
   }
 
   return (
@@ -67,9 +66,33 @@ const HarvestRecords = () => {
       ) : (
         <div className="harvest-grid">
           {harvests.map((harvest) => (
-            <HarvestCard key={harvest.id} harvest={harvest} />
+            <HarvestCard
+              key={harvest.id}
+              harvest={harvest}
+              isFarmer
+              onRefresh={loadHarvests}
+              onEdit={(harvest) => {
+                setSelectedHarvest(harvest);
+                setShowEditModal(true);
+              }}
+              onDelete={deleteHarvest}
+            />
           ))}
         </div>
+      )}
+      {showEditModal && selectedHarvest && (
+        <EditHarvestModal
+          harvest={selectedHarvest}
+          onClose={() => {
+            setShowEditModal(false);
+            setSelectedHarvest(null);
+          }}
+          onSuccess={() => {
+            loadHarvests();
+            setShowEditModal(false);
+            setSelectedHarvest(null);
+          }}
+        />
       )}
     </div>
   );

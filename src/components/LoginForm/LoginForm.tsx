@@ -3,7 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useAuth } from "../../context/AuthContext";
 
-const Login = () => {
+interface Props {
+  onSuccess?: () => void;
+  onSwitchRegister?: () => void;
+}
+
+const LoginForm = ({ onSuccess, onSwitchRegister }: Props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
@@ -31,10 +36,12 @@ const Login = () => {
         if (userProfile.role === "Buyer") {
           localStorage.setItem("user_Id", userProfile.uid);
           localStorage.setItem("user_Role", "Buyer");
+          onSuccess?.();
           navigate("/buyer/dashboard");
         } else if (userProfile.role === "Farmer") {
           localStorage.setItem("user_Id", userProfile.uid);
           localStorage.setItem("user_Role", "Farmer");
+          onSuccess?.();
           navigate("/farmer/dashboard");
         }
       }, 1000);
@@ -124,12 +131,16 @@ const Login = () => {
 
       <p className="register-text">
         Don't have an account?{" "}
-        <Link className="register-link" to="/register">
+        <button
+          type="button"
+          className="register-link"
+          onClick={onSwitchRegister}
+        >
           Register
-        </Link>
+        </button>
       </p>
     </div>
   );
 };
 
-export default Login;
+export default LoginForm;

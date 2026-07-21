@@ -1,11 +1,17 @@
 import "./Header.css";
+import { useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import AuthModal from "../AuthModal/AuthModal";
+import Logo from "../../assets/images/home/logo-1.png";
+import Loader from "../Loader/Loader";
 
 function Header() {
   const { user, loading, logout } = useAuth();
+  const [showAuth, setShowAuth] = useState(false);
   const navigate = useNavigate();
-
+  const [mobileMenu, setMobileMenu] = useState(false);
   const handleLogout = async () => {
     await logout();
     navigate("/");
@@ -19,63 +25,54 @@ function Header() {
           style={{ cursor: "pointer" }}
           onClick={() => navigate("/")}
         >
-          AgriMart
+          <img src={Logo} alt="logo" width={140} />
+          {/* <span>AgriMart</span> */}
         </div>
-        <nav className="nav">
-          <ul className="nav-lists">
-            <li className="nav-item">
-              <Link className="link" to="/">
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="link" to="allPost">
-                Posts
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="link" to="contracts">
-                Contracts
-              </Link>
-            </li>
-          </ul>
+        <button
+          className="mobile-menu-btn"
+          onClick={() => setMobileMenu(!mobileMenu)}
+        >
+          {mobileMenu ? <FaTimes /> : <FaBars />}
+        </button>
+        <nav className={`nav ${mobileMenu ? "active" : ""}`}>
+          <Link to="/" onClick={() => setMobileMenu(false)}>
+            Home
+          </Link>
+
+          <Link to="/AllPost" onClick={() => setMobileMenu(false)}>
+            Posts
+          </Link>
+
+          <Link to="/contracts" onClick={() => setMobileMenu(false)}>
+            Contracts
+          </Link>
 
           {loading ? (
-            <span
-              style={{ color: "#666", fontSize: "14px", marginRight: "10px" }}
-            >
-              Loading...
-            </span>
+            <Loader />
           ) : user ? (
-            <div
-              className="user-nav-section"
-              style={{ display: "flex", alignItems: "center", gap: "15px" }}
-            >
-              <span
-                className="user-greeting"
-                style={{ fontSize: "14px", fontWeight: "500" }}
-              >
-                Hello, <strong>{user.fullName}</strong> ({user.role})
-              </span>
-              <button
-                className="btn-login"
-                onClick={handleLogout}
-                style={{ backgroundColor: "#ef4444", border: "none" }}
-              >
+            <div className="user-nav-section">
+              <button className="btn-login" onClick={handleLogout}>
                 Logout
               </button>
             </div>
           ) : (
             <>
-              <button className="btn-login">
-                <Link to="register">Register</Link>
+              <button
+                className="btn-login"
+                onClick={() => {
+                  setShowAuth(true);
+                }}
+              >
+                Register
               </button>
-              <button className="btn-login">
-                <Link to="login">Login</Link>
+
+              <button className="btn-login" onClick={() => setShowAuth(true)}>
+                Login
               </button>
             </>
           )}
         </nav>
+        <AuthModal open={showAuth} onClose={() => setShowAuth(false)} />
       </header>
     </>
   );

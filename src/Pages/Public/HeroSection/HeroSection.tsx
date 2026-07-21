@@ -8,6 +8,8 @@ import { Autoplay, Pagination, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
+import { useState } from "react";
+import AuthModal from "../../../components/AuthModal/AuthModal";
 
 const slides = [
   {
@@ -30,14 +32,17 @@ const slides = [
     id: 3,
     image:
       "https://images.unsplash.com/photo-1500076656116-558758c991c1?w=1600",
-    title: "Grow Better Together",
+    title:
+      //" ပိုမိုကောင်းမွန်စွာ ကြီးထွားတိုးတက်ကြပါစို့",
+      "Grow Better Together",
     subtitle:
+      // "စာချုပ်များ၊ ရိတ်သိမ်းမှုများ၊ ငွေပေးချေမှုများနှင့် မိတ်ဖက်ပူးပေါင်းဆောင်ရွက်မှုများကို ပလက်ဖောင်းတစ်ခုတည်းတွင် စီမံခန့်ခွဲပါ",
       "Manage contracts, harvests, payments and partnerships in one platform.",
   },
 ];
 
 const HeroSection = () => {
-  const navigate = useNavigate();
+  const [showAuth, setShowAuth] = useState(false);
 
   return (
     <section className="hero-section">
@@ -74,15 +79,17 @@ const HeroSection = () => {
 
                   <div className="hero-buttons">
                     <button
-                      className="primary-btn"
-                      onClick={() => navigate("/register")}
+                      className="hero-btn-register"
+                      onClick={() => {
+                        setShowAuth(true);
+                      }}
                     >
-                      Get Started
+                      Register
                     </button>
 
                     <button
-                      className="secondary-btn"
-                      onClick={() => navigate("/login")}
+                      className="hero-btn-login"
+                      onClick={() => setShowAuth(true)}
                     >
                       Login
                     </button>
@@ -93,6 +100,7 @@ const HeroSection = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+      <AuthModal open={showAuth} onClose={() => setShowAuth(false)} />
     </section>
   );
 };

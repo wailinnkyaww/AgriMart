@@ -4,10 +4,10 @@ import AdminProfile from "../pages/Admin/AdminProfile";
 import UserProfile from "../pages/User/UserProfile";
 import AllPost from "../pages/Posts/AllPost";
 import Home from "../pages/Public/Home";
-import Register from "../components/Register/Register";
-import Login from "../components/Login/Login";
+import Register from "../components/RegisterForm/RegisterForm";
+import Login from "../components/LoginForm/LoginForm";
 import Contracts from "../pages/Contracts/Contracts"; //to show all contracts
-import CreateContracts from "../pages/Contracts/CreateContract/CreateContract"; //create new contractsz
+//import CreateContracts from "../pages/Contracts/CreateContract/CreateContract"; //create new contractsz
 import FarmerPosts from "../pages/Posts/FarmerPosts";
 import { PostDetail } from "../pages/Posts/PostDetail";
 

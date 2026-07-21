@@ -8,6 +8,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { getContracts } from "../../../services/contractService";
 import { getHarvests } from "../../../services/harvestService";
 import { getPayments } from "../../../services/paymentService";
+import Loader from "../../../components/Loader/Loader";
 
 const Reports = () => {
   const { user } = useAuth();
@@ -98,7 +99,7 @@ const Reports = () => {
   };
 
   if (loading) {
-    return <div className="loading">Loading Reports...</div>;
+    return <Loader />;
   }
 
   return (

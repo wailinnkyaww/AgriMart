@@ -229,13 +229,16 @@ import { getHarvests, deleteHarvest } from "../../../services/harvestService";
 
 import HarvestCard from "../../../components/HarvestCard/HarvestCard";
 import CreateHarvestModal from "../../../components/CreateHarvestModal/CreateHarvestModal";
+import EditHarvestModal from "../../../components/EditHarvestModal/EditHarvestModal";
+import Loader from "../../../components/Loader/Loader";
 
 const HarvestRecords = () => {
   const { user } = useAuth();
 
   const [harvests, setHarvests] = useState<Harvest[]>([]);
   const [loading, setLoading] = useState(true);
-
+  const [selectedHarvest, setSelectedHarvest] = useState<Harvest | null>(null);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const loadHarvests = async () => {
@@ -280,7 +283,7 @@ const HarvestRecords = () => {
   };
 
   if (loading) {
-    return <div className="loading">Loading Harvest Records...</div>;
+    return <Loader />;
   }
 
   return (
@@ -311,11 +314,12 @@ const HarvestRecords = () => {
               key={harvest.id}
               harvest={harvest}
               isFarmer
-              onDelete={handleDelete}
+              onRefresh={loadHarvests}
               onEdit={(harvest) => {
-                console.log("Edit Harvest:", harvest);
-                // Edit feature will be added next
+                setSelectedHarvest(harvest);
+                setShowEditModal(true);
               }}
+              onDelete={deleteHarvest}
             />
           ))}
         </div>
@@ -326,6 +330,21 @@ const HarvestRecords = () => {
         onClose={() => setIsModalOpen(false)}
         onCreated={loadHarvests}
       />
+
+      {showEditModal && selectedHarvest && (
+        <EditHarvestModal
+          harvest={selectedHarvest}
+          onClose={() => {
+            setShowEditModal(false);
+            setSelectedHarvest(null);
+          }}
+          onSuccess={() => {
+            loadHarvests();
+            setShowEditModal(false);
+            setSelectedHarvest(null);
+          }}
+        />
+      )}
     </div>
   );
 };

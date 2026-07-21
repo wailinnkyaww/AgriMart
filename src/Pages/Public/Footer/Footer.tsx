@@ -20,8 +20,9 @@ const Footer = () => {
           <h3>Quick Links</h3>
 
           <Link to="/">Home</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
+          <Link to="/contracts">Contract</Link>
+          {/* <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link> */}
         </div>
 
         <div className="footer-column">

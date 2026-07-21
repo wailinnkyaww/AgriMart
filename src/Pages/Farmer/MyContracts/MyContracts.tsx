@@ -137,6 +137,7 @@ import { getContracts } from "../../../services/contractService";
 import type { Contract } from "../../../types/Contract";
 import MyContractCard from "./MyContractCard/MyContractCard";
 import ContractDetails from "../../Contracts/ContractDetails/ContractDetails";
+import Loader from "../../../components/Loader/Loader";
 
 const MyContracts = () => {
   const { user } = useAuth();
@@ -173,7 +174,7 @@ const MyContracts = () => {
   }, [user]);
 
   if (loading) {
-    return <div className="loading-state">Loading...</div>;
+    return <Loader />;
   }
 
   return (

@@ -4,6 +4,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { getUserNotifications } from "../../../services/notificationService";
 import type { Notification } from "../../../types/Notification";
 import NotificationCard from "./NotificationCard/NotificationCard";
+import Loader from "../../../components/Loader/Loader";
 
 const Notifications = () => {
   const { user } = useAuth();
@@ -29,7 +30,7 @@ const Notifications = () => {
   }, [user]);
 
   if (loading) {
-    return <div className="loading">Loading notifications...</div>;
+    return <Loader />;
   }
 
   return (

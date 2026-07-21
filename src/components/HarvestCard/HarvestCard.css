@@ -98,3 +98,24 @@
 .delete-btn:hover {
   background: #c82333;
 }
+
+.complete-btn {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #2e7d32;
+  color: white;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.complete-btn:hover {
+  background: #1b5e20;
+}
