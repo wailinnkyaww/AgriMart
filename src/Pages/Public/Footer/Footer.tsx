@@ -1,14 +1,18 @@
 import "./Footer.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Logo from "../../../assets/images/home/logo-2.png";
 
 const Footer = () => {
   const year = new Date().getFullYear();
+  const navigate = useNavigate();
 
   return (
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-column">
-          <h2>🌾 Contract Farming</h2>
+          <div className="logo" onClick={() => navigate("/")}>
+            <img src={Logo} alt="Logo image" width={160} height={65} />
+          </div>
 
           <p>
             Connecting farmers and buyers through a secure and transparent

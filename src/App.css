@@ -13,6 +13,15 @@ body {
       #312e81);
 }
 
+.main-content {
+  width: 100%;
+  min-width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .app-container {
   min-height: 100vh;
   display: flex;

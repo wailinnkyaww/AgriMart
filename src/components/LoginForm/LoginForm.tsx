@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
 import "./Login.css";
 import { useAuth } from "../../context/AuthContext";
 
@@ -18,36 +19,74 @@ const LoginForm = ({ onSuccess, onSwitchRegister }: Props) => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  const loginSchema = yup.object({
+    email: yup
+      .string()
+      .required("Email is required.")
+      .matches(
+        /^[A-Za-z][A-Za-z0-9._%+-]*@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+        "Email must start with a letter and be a valid email address.",
+      ),
+
+    password: yup
+      .string()
+      .required("Password is required.")
+      .min(6, "Password must be at least 6 characters."),
+  });
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+
     setErrorMsg("");
     setSuccessMsg("");
 
-    if (!email || !password) {
-      setErrorMsg("Please enter both email and password.");
-      return;
-    }
-
-    setLoginLoading(true);
     try {
+      // Validate login form using Yup
+      await loginSchema.validate(
+        {
+          email,
+          password,
+        },
+        {
+          abortEarly: true,
+        },
+      );
+
+      setLoginLoading(true);
+
       const userProfile = await login(email, password);
+
       setSuccessMsg("Logged in successfully! Redirecting...");
+
       setTimeout(() => {
+        onSuccess?.();
+
         if (userProfile.role === "Buyer") {
           localStorage.setItem("user_Id", userProfile.uid);
+
           localStorage.setItem("user_Role", "Buyer");
-          onSuccess?.();
+
           navigate("/buyer/dashboard");
         } else if (userProfile.role === "Farmer") {
           localStorage.setItem("user_Id", userProfile.uid);
+
           localStorage.setItem("user_Role", "Farmer");
-          onSuccess?.();
+
           navigate("/farmer/dashboard");
         }
       }, 1000);
     } catch (err: any) {
+      // Yup validation error
+      if (err instanceof yup.ValidationError) {
+        setErrorMsg(err.message);
+        return;
+      }
+
+      // Firebase authentication error
       console.error(err);
+
       let message = "Invalid email or password.";
+
       if (
         err.code === "auth/user-not-found" ||
         err.code === "auth/wrong-password"
@@ -65,7 +104,6 @@ const LoginForm = ({ onSuccess, onSwitchRegister }: Props) => {
       setLoginLoading(false);
     }
   };
-
   return (
     <div className="login-card">
       <h2 className="login-title">Login</h2>

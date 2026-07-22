@@ -56,27 +56,15 @@
   border-color: #2e7d32;
 }
 
+
 .contact-form button {
-  padding: 16px;
-
-  border: none;
-
-  background: #2e7d32;
-
-  color: white;
-
-  font-size: 17px;
-
+  width: 200px;
+  margin: 0 auto;
+  display: flow;
   border-radius: 10px;
-
-  cursor: pointer;
-
   transition: .3s;
 }
 
-.contact-form button:hover {
-  background: #1b5e20;
-}
 
 @media(max-width:900px) {
 

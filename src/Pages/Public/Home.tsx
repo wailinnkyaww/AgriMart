@@ -106,7 +106,6 @@
 // }
 
 import "./Home.css";
-
 import HeroSection from "./HeroSection/HeroSection";
 import CategorySection from "./CategorySection/CategorySection";
 import FarmerSection from "./FarmerSection/FarmerSection";
@@ -119,7 +118,7 @@ import ContactSection from "./ContactSection/ContactSection";
 
 const Home = () => {
   return (
-    <>
+    <div className="main-home-page">
       <HeroSection />
       <CategorySection />
       <FarmerSection />
@@ -129,7 +128,7 @@ const Home = () => {
       <StatsSection />
       <HowItWorksSection />
       <ContactSection />
-    </>
+    </div>
   );
 };
 

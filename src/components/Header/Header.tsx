@@ -1,80 +1,143 @@
 import "./Header.css";
+import NotificationModal from "../NotificationModal/NotificationModal";
 import { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { FaBars, FaBell, FaCog } from "react-icons/fa";
+import { VscSignOut } from "react-icons/vsc";
+import { useNavigate, Link } from "react-router-dom";
+import Logo from "../../assets/images/home/logo-2.png";
 import { useAuth } from "../../context/AuthContext";
 import AuthModal from "../AuthModal/AuthModal";
-import Logo from "../../assets/images/home/logo-1.png";
+
 import Loader from "../Loader/Loader";
 
-function Header() {
+interface Props {
+  toggleSidebar?: () => void;
+}
+
+function Header({ toggleSidebar }: Props) {
   const { user, loading, logout } = useAuth();
-  const [showAuth, setShowAuth] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
   const navigate = useNavigate();
-  const [mobileMenu, setMobileMenu] = useState(false);
+  const [showMobileLinks, setShowMobileLinks] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
+
+  const [authMode, setAuthMode] = useState<"login" | "register">("login");
+
   const handleLogout = async () => {
     await logout();
+
     navigate("/");
   };
 
   return (
-    <>
-      <header className="header">
-        <div
-          className="logo"
-          style={{ cursor: "pointer" }}
-          onClick={() => navigate("/")}
-        >
-          <img src={Logo} alt="logo" width={140} />
-          {/* <span>AgriMart</span> */}
-        </div>
-        <button
-          className="mobile-menu-btn"
-          onClick={() => setMobileMenu(!mobileMenu)}
-        >
-          {mobileMenu ? <FaTimes /> : <FaBars />}
+    <header className="header">
+      {/* LEFT SECTION */}
+      <div className="header-left">
+        <button className="menu-btn" onClick={toggleSidebar}>
+          <FaBars />
         </button>
-        <nav className={`nav ${mobileMenu ? "active" : ""}`}>
-          <Link to="/" onClick={() => setMobileMenu(false)}>
-            Home
-          </Link>
 
-          <Link to="/AllPost" onClick={() => setMobileMenu(false)}>
-            Posts
-          </Link>
+        <div className="logo" onClick={() => navigate("/")}>
+          <img src={Logo} alt="Logo image" width={160} height={50} />
+        </div>
+      </div>
 
-          <Link to="/contracts" onClick={() => setMobileMenu(false)}>
-            Contracts
-          </Link>
+      {/* CENTER SECTION */}
+      <nav className="header-center">
+        <Link to="/">Home</Link>
 
-          {loading ? (
-            <Loader />
-          ) : user ? (
-            <div className="user-nav-section">
-              <button className="btn-login" onClick={handleLogout}>
-                Logout
-              </button>
-            </div>
-          ) : (
-            <>
+        <Link to="/AllPost">Posts</Link>
+
+        <Link to="/contracts">Contracts</Link>
+      </nav>
+
+      {/* RIGHT SECTION */}
+      <div className="header-right">
+        {loading ? (
+          <span>loading ...</span>
+        ) : // <Loader />
+        user ? (
+          <>
+            {/* <span className="username">{user.fullName}</span> */}
+            <button
+              className="notification-btn"
+              onClick={() => {
+                setShowNotification(true);
+              }}
+            >
+              <FaBell />
+            </button>
+            <button className="logout-btn pc-logout" onClick={handleLogout}>
+              <VscSignOut size={16} /> Logout
+            </button>
+            <div className="mobile-settings">
               <button
-                className="btn-login"
-                onClick={() => {
-                  setShowAuth(true);
-                }}
+                className="settings-btn"
+                onClick={() => setShowMobileLinks(!showMobileLinks)}
               >
-                Register
+                <FaCog />
               </button>
 
-              <button className="btn-login" onClick={() => setShowAuth(true)}>
-                Login
-              </button>
-            </>
-          )}
-        </nav>
-        <AuthModal open={showAuth} onClose={() => setShowAuth(false)} />
-      </header>
-    </>
+              {showMobileLinks && (
+                <div className="mobile-settings-menu">
+                  <Link to="/" onClick={() => setShowMobileLinks(false)}>
+                    Home
+                  </Link>
+
+                  <Link to="/AllPost" onClick={() => setShowMobileLinks(false)}>
+                    Posts
+                  </Link>
+
+                  <Link
+                    to="/contracts"
+                    onClick={() => setShowMobileLinks(false)}
+                  >
+                    Contracts
+                  </Link>
+                  <button className="mb-logout-btn" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          </>
+        ) : (
+          <>
+            <button
+              className="create-btn"
+              onClick={() => {
+                setAuthMode("register");
+                setShowAuth(true);
+              }}
+            >
+              Register
+            </button>
+
+            <button
+              className="create-btn"
+              onClick={() => {
+                setAuthMode("login");
+                setShowAuth(true);
+              }}
+            >
+              Login
+            </button>
+          </>
+        )}
+      </div>
+
+      <AuthModal
+        open={showAuth}
+        onClose={() => setShowAuth(false)}
+        initialMode={authMode}
+      />
+      <NotificationModal
+        open={showNotification}
+        onClose={() => {
+          setShowNotification(false);
+        }}
+      />
+    </header>
   );
 }
 

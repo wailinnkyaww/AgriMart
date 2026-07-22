@@ -13,17 +13,14 @@
 
 .auth-modal {
 
-  width: 95%;
-  max-width: 500px;
-
+  width: 100%;
+  max-width: 600px;
+  height: auto;
   background: #f4f6f9;
-
   border-radius: 15px;
-
   padding: 35px;
-
   position: relative;
-
+  scroll-behavior: smooth;
   animation: pop .25s ease;
 }
 

@@ -1,49 +1,47 @@
 import "./HeroSection.css";
-
-import { useNavigate } from "react-router-dom";
-
+import { useAuth } from "../../../context/AuthContext";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, EffectFade } from "swiper/modules";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import { useState } from "react";
 import AuthModal from "../../../components/AuthModal/AuthModal";
+import Hero_01 from "../../../assets/images/home/hero_01.jpg";
+import Hero_02 from "../../../assets/images/home/hero_02.jpg";
+import Hero_03 from "../../../assets/images/home/hero_03.jpg";
 
 const slides = [
   {
     id: 1,
-    image:
-      "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1600",
+    image: Hero_01,
     title: "Smart Contract Farming Platform",
     subtitle:
       "Connecting buyers and farmers through a secure and transparent digital farming ecosystem.",
   },
   {
     id: 2,
-    image:
-      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1600",
+    image: Hero_02,
     title: "Empowering Myanmar Agriculture",
     subtitle:
       "Helping farmers access reliable buyers and helping companies find trusted farming partners.",
   },
   {
     id: 3,
-    image:
-      "https://images.unsplash.com/photo-1500076656116-558758c991c1?w=1600",
+    image: Hero_03,
     title:
       //" ပိုမိုကောင်းမွန်စွာ ကြီးထွားတိုးတက်ကြပါစို့",
       "Grow Better Together",
     subtitle:
       // "စာချုပ်များ၊ ရိတ်သိမ်းမှုများ၊ ငွေပေးချေမှုများနှင့် မိတ်ဖက်ပူးပေါင်းဆောင်ရွက်မှုများကို ပလက်ဖောင်းတစ်ခုတည်းတွင် စီမံခန့်ခွဲပါ",
-      "Manage contracts, harvests, payments and partnerships in one platform.",
+      "Manage contracts, harvests, post and partnerships in one platform.Lets create strong market and wealthy together",
   },
 ];
 
 const HeroSection = () => {
   const [showAuth, setShowAuth] = useState(false);
-
+  const [authMode, setAuthMode] = useState<"login" | "register">("login");
+  const { user } = useAuth();
   return (
     <section className="hero-section">
       <Swiper
@@ -74,33 +72,42 @@ const HeroSection = () => {
                   </span>
 
                   <h1>{slide.title}</h1>
-
                   <p>{slide.subtitle}</p>
 
-                  <div className="hero-buttons">
-                    <button
-                      className="hero-btn-register"
-                      onClick={() => {
-                        setShowAuth(true);
-                      }}
-                    >
-                      Register
-                    </button>
+                  {!user && (
+                    <div className="hero-buttons">
+                      <button
+                        className="hero-btn-register"
+                        onClick={() => {
+                          setAuthMode("register");
+                          setShowAuth(true);
+                        }}
+                      >
+                        Get Start
+                      </button>
 
-                    <button
-                      className="hero-btn-login"
-                      onClick={() => setShowAuth(true)}
-                    >
-                      Login
-                    </button>
-                  </div>
+                      <button
+                        className="hero-btn-login"
+                        onClick={() => {
+                          setAuthMode("login");
+                          setShowAuth(true);
+                        }}
+                      >
+                        Login
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-      <AuthModal open={showAuth} onClose={() => setShowAuth(false)} />
+      <AuthModal
+        open={showAuth}
+        onClose={() => setShowAuth(false)}
+        initialMode={authMode}
+      />
     </section>
   );
 };

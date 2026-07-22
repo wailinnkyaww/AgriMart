@@ -150,23 +150,3 @@
 
   background: #157347;
 }
-
-.cancel-button {
-
-  background: #6c757d;
-
-  color: white;
-
-  border: none;
-
-  padding: 12px 28px;
-
-  border-radius: 8px;
-
-  cursor: pointer;
-}
-
-.cancel-button:hover {
-
-  background: #5a6268;
-}

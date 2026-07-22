@@ -1,5 +1,7 @@
 import "./HarvestCard.css";
+
 import { completeContract } from "../../services/contractService";
+
 import type { Harvest } from "../../types/Harvest";
 
 interface Props {
@@ -37,61 +39,49 @@ const HarvestCard = ({
         alt={harvest.crop}
         className="harvest-image"
       />
-
       <div className="harvest-content">
-        <h2>{harvest.crop}</h2>
-
+        <h2> {harvest.crop}</h2>
         <div className="harvest-details">
           <p>
             <strong>Farmer:</strong> {harvest.farmerName}
           </p>
-
           <p>
-            <strong>Quantity:</strong> {harvest.quantity} KG
+            <strong>Quantity:</strong> {harvest.quantity}
+            KG
           </p>
-
           <p>
             <strong>Harvest Date:</strong> {harvest.harvestDate}
           </p>
-
           <p>
             <strong>Quality:</strong> {harvest.quality}
           </p>
-
           <p>
             <strong>Status:</strong>
-
-            <span className="submitted">{harvest.status}</span>
+            <span className="submitted"> {harvest.status}</span>
           </p>
         </div>
-
         {harvest.notes && (
           <div className="notes">
-            <strong>Notes</strong>
-
-            <p>{harvest.notes}</p>
+            <strong>Notes</strong> <p> {harvest.notes}</p>
           </div>
         )}
-
         {isFarmer && (
           <div className="harvest-actions">
             <button className="edit-btn" onClick={() => onEdit?.(harvest)}>
               Edit
             </button>
-
             <button
-              className="delete-btn"
+              className="logout-btn"
               onClick={() => onDelete?.(harvest.id)}
             >
               Delete
             </button>
+            {harvest.status === "Submitted" && (
+              <button className="create-btn" onClick={handleCompleteContract}>
+                Complete Contract
+              </button>
+            )}
           </div>
-        )}
-
-        {harvest.status === "Submitted" && (
-          <button className="complete-btn" onClick={handleCompleteContract}>
-            Complete Contract
-          </button>
         )}
       </div>
     </div>

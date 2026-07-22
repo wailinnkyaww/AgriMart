@@ -1,0 +1,127 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #198754;
+  --secondary-color: lightgreen;
+}
+
+.create-btn {
+  background: #198754;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.create-btn:hover {
+  background: white;
+  color: #198754;
+}
+
+.view-btn {
+  width: auto;
+  background: #1976d2;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.view-btn:hover {
+  background: white;
+  color: #1976d2;
+}
+
+.close-btn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  border: none;
+  background: #dc3545;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.close-btn:hover {
+  background: grey;
+  color: #fff;
+}
+
+.cancel-btn {
+  background: #fff;
+  color: grey;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cancel-btn:hover {
+  background: grey;
+  color: #fff;
+}
+
+.logout-btn {
+  font-size: 13px;
+  font-weight: 400;
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: white;
+  color: #ef4444;
+}
+
+.edit-btn {
+  font-size: 13px;
+  font-weight: 400;
+  background: #f7e40f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.edit-btn:hover {
+  background: white;
+  color: #f7e40f;
+}
+
+@media screen and (max-width: 768) {
+  .create-btn {
+    font-size: 14px;
+    font-weight: 400;
+    background: #198754;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+  }
+
+  .create-btn:hover {
+    background: white;
+    color: #198754;
+  }
+}

@@ -1,12 +1,53 @@
 import React, { useState } from "react";
-import "./Register.css";
+import "./RegisterForm.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import * as yup from "yup";
 
 interface Props {
   onSuccess?: () => void;
   onSwitchLogin?: () => void;
 }
+
+export const registerSchema = yup.object({
+  role: yup
+    .string()
+    .oneOf(["Buyer", "Farmer"], "Please select a valid role.")
+    .required("Please select a role first."),
+
+  fullName: yup
+    .string()
+    .required("Full name is required.")
+    .matches(/^(?!\s*$).+$/, "Full name cannot be empty or only spaces.")
+    .matches(/^[A-Za-z\s]+$/, "Full name must contain only letters and spaces.")
+    .min(2, "Full name must be at least 2 characters."),
+
+  email: yup
+    .string()
+    .required("Email is required.")
+    .matches(
+      /^[A-Za-z][A-Za-z0-9._%+-]*@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+      "Email must start with a letter and be a valid email address.",
+    ),
+
+  password: yup
+    .string()
+    .required("Password is required.")
+    .min(6, "Password must be at least 6 characters."),
+
+  confirmPassword: yup
+    .string()
+    .required("Please confirm your password.")
+    .oneOf([yup.ref("password")], "Passwords do not match."),
+
+  phone: yup
+    .string()
+    .required("Phone number is required.")
+    .matches(
+      /^09\d{9}$/,
+      "Phone number must be exactly 11 digits and start with 09.",
+    ),
+});
 
 const RegisterForm = ({ onSuccess, onSwitchLogin }: Props) => {
   const [step, setStep] = useState<"selection" | "register">("selection");
@@ -31,53 +72,55 @@ const RegisterForm = ({ onSuccess, onSwitchLogin }: Props) => {
     setErrorMsg("");
   };
 
-  const handleRoleExit = () => {
-    setStep("selection");
-    setRole(null);
-    setErrorMsg("");
-  };
-
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+
     setErrorMsg("");
     setSuccessMsg("");
 
-    if (!role) {
-      setErrorMsg("Please select a role first.");
-      return;
-    }
-
-    if (!fullName || !email || !password || !confirmPassword) {
-      setErrorMsg("All fields are required.");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setErrorMsg("Passwords do not match.");
-      return;
-    }
-
-    if (password.length < 6) {
-      setErrorMsg("Password must be at least 6 characters.");
-      return;
-    }
-
-    setRegLoading(true);
     try {
-      await register(email, password, fullName, role, phone);
+      // Validate form data using Yup
+      await registerSchema.validate(
+        {
+          role,
+          fullName,
+          email,
+          password,
+          confirmPassword,
+          phone,
+        },
+        {
+          abortEarly: true,
+        },
+      );
+
+      setRegLoading(true);
+
+      await register(email, password, fullName, role!, phone);
+
       setSuccessMsg("Registration successful! Redirecting...");
+
       setTimeout(() => {
+        onSuccess?.();
+
         if (role === "Buyer") {
-          onSuccess?.();
           navigate("/buyer/dashboard");
         } else {
-          onSuccess?.();
           navigate("/farmer/dashboard");
         }
       }, 1000);
     } catch (err: any) {
+      // Yup validation error
+      if (err instanceof yup.ValidationError) {
+        setErrorMsg(err.message);
+        return;
+      }
+
+      // Firebase registration error
       console.error(err);
+
       let message = "Failed to register. Please try again.";
+
       if (err.code === "auth/email-already-in-use") {
         message = "This email is already registered.";
       } else if (err.code === "auth/invalid-email") {
@@ -87,6 +130,7 @@ const RegisterForm = ({ onSuccess, onSwitchLogin }: Props) => {
       } else if (err.message) {
         message = err.message;
       }
+
       setErrorMsg(message);
     } finally {
       setRegLoading(false);

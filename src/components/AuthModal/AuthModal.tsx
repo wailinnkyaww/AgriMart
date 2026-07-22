@@ -1,17 +1,23 @@
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 import LoginForm from "../LoginForm/LoginForm";
 import RegisterForm from "../RegisterForm/RegisterForm";
-
 import "./AuthModal.css";
 
 interface Props {
   open: boolean;
   onClose: () => void;
+  initialMode?: "login" | "register";
 }
 
-const AuthModal = ({ open, onClose }: Props) => {
-  const [mode, setMode] = useState<"login" | "register">("login");
+const AuthModal = ({ open, onClose, initialMode = "login" }: Props) => {
+  const [mode, setMode] = useState<"login" | "register">(initialMode);
+
+  // Change modal mode every time it opens
+  useEffect(() => {
+    if (open) {
+      setMode(initialMode);
+    }
+  }, [open, initialMode]);
 
   if (!open) return null;
 

@@ -199,11 +199,15 @@ const EditFarmerProfile = () => {
         />
 
         <div className="button-group">
-          <button type="button" onClick={() => navigate("/farmer/profile")}>
+          <button
+            className="cancel-btn"
+            type="button"
+            onClick={() => navigate("/farmer/profile")}
+          >
             Cancel
           </button>
 
-          <button type="submit" disabled={saving}>
+          <button className="create-btn" type="submit" disabled={saving}>
             {saving ? "Saving..." : "Save Changes"}
           </button>
         </div>

@@ -1,0 +1,359 @@
+/* Overlay */
+
+.notification-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+
+  padding: 20px;
+}
+
+
+
+/* Modal Box */
+
+.notification-modal {
+
+  width: 600px;
+  max-width: 100%;
+
+  max-height: 550px;
+
+  background: white;
+
+  border-radius: 16px;
+
+  padding: 25px;
+
+  position: relative;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+
+  animation: modalShow .25s ease;
+
+  overflow: hidden;
+
+}
+
+
+
+@keyframes modalShow {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(-20px);
+
+  }
+
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+  }
+
+}
+
+
+
+/* Close Button */
+
+.close-btn {
+
+  position: absolute;
+
+  top: 15px;
+
+  right: 20px;
+
+
+  width: 35px;
+
+  height: 35px;
+
+
+  border: none;
+
+  border-radius: 50%;
+
+
+  background: #f1f5f9;
+
+  color: #333;
+
+
+  font-size: 25px;
+
+  line-height: 30px;
+
+
+  cursor: pointer;
+
+}
+
+
+.close-btn:hover {
+
+  background: #dc2626;
+
+  color: white;
+
+}
+
+
+
+/* Title */
+
+.notification-modal h2 {
+
+  margin: 0 0 20px 0;
+
+  color: #1b4332;
+
+  font-size: 24px;
+
+  border-bottom: 2px solid #e5e7eb;
+
+  padding-bottom: 12px;
+
+}
+
+
+
+/* List */
+
+.modal-notification-list {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+
+  max-height: 400px;
+
+  overflow-y: auto;
+
+}
+
+
+
+/* Notification Card */
+
+.modal-notification-item {
+
+
+  padding: 15px;
+
+
+  border-radius: 12px;
+
+
+  border: 1px solid #e5e7eb;
+
+
+  transition: .3s;
+
+}
+
+
+
+/* unread */
+
+.modal-notification-item.unread {
+
+  background: #ecfdf5;
+
+  border-left: 5px solid #198754;
+
+}
+
+
+
+/* read */
+
+.modal-notification-item.read {
+
+  background: #f8fafc;
+
+  opacity: .75;
+
+}
+
+
+
+.modal-notification-item:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+
+}
+
+
+
+/* Title */
+
+.modal-notification-item h4 {
+
+  margin: 0 0 8px;
+
+  color: #1b4332;
+
+  font-size: 16px;
+
+}
+
+
+
+/* Message */
+
+.modal-notification-item p {
+
+  margin: 0 0 10px;
+
+
+  color: #555;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+
+}
+
+
+
+/* Time */
+
+.modal-notification-item small {
+
+  color: #888;
+
+  font-size: 12px;
+
+}
+
+
+
+/* Read Button */
+
+.modal-notification-item button {
+
+  margin-top: 12px;
+
+
+  padding: 8px 15px;
+
+
+  background: #198754;
+
+  color: white;
+
+
+  border: none;
+
+  border-radius: 6px;
+
+
+  cursor: pointer;
+
+  font-size: 13px;
+
+
+  transition: .3s;
+
+}
+
+
+
+.modal-notification-item button:hover {
+
+  background: #146c43;
+
+}
+
+
+
+/* Empty */
+
+.empty-notification {
+
+  text-align: center;
+
+  padding: 40px 20px;
+
+
+  color: #777;
+
+  font-size: 16px;
+
+}
+
+
+
+/* Scrollbar */
+
+.modal-notification-list::-webkit-scrollbar {
+
+  width: 6px;
+
+}
+
+
+.modal-notification-list::-webkit-scrollbar-thumb {
+
+  background: #198754;
+
+  border-radius: 10px;
+
+}
+
+
+
+
+/* Mobile */
+
+@media(max-width:600px) {
+
+
+  .notification-modal {
+
+    width: 100%;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+  }
+
+
+
+  .notification-modal h2 {
+
+    font-size: 20px;
+
+  }
+
+
+
+  .modal-notification-item {
+
+    padding: 12px;
+
+  }
+
+
+
+}

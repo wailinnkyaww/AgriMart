@@ -93,34 +93,6 @@
   gap: 4px;
 }
 
-.view-btn {
-  border: none;
-  padding: 8px 16px;
-  background: #6c757d;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: .3s;
-}
-
-.view-btn:hover {
-  background: #5a6268;
-}
-
-.apply-btn {
-  border: none;
-  padding: 10px 16px;
-  background: #198754;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: .3s;
-}
-
-.apply-btn:hover {
-  background: #157347;
-}
-
 @media(max-width:768px) {
 
   .contract-footer {

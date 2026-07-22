@@ -98,12 +98,14 @@ const BuyerProfile = () => {
           <p>{profile.bio || "No description available."}</p>
         </div>
 
-        <button
-          className="edit-profile-btn"
-          onClick={() => navigate("/buyer/edit-profile")}
-        >
-          Edit Profile
-        </button>
+        <div className="edit-profile-btn">
+          <button
+            className=" create-btn"
+            onClick={() => navigate("/buyer/edit-profile")}
+          >
+            Edit Profile
+          </button>
+        </div>
       </div>
     </div>
   );

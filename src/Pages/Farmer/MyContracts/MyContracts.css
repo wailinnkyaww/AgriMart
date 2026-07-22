@@ -39,8 +39,8 @@
 
 .contracts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1;
 }
 
 .loading-state {
@@ -177,8 +177,6 @@
 }
 
 /* Buttons */
-
-.view-btn,
 .edit-btn {
   border: none;
   padding: 7px 12px;
@@ -187,18 +185,9 @@
   margin-right: 5px;
 }
 
-.view-btn {
-  background: #3498db;
-  color: white;
-}
-
 .edit-btn {
   background: #f39c12;
   color: white;
-}
-
-.view-btn:hover {
-  opacity: 0.9;
 }
 
 .edit-btn:hover {

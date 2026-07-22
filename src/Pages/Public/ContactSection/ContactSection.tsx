@@ -75,7 +75,9 @@ const ContactSection = () => {
           required
         />
 
-        <button type="submit">Send Message</button>
+        <button className="create-btn" type="submit">
+          Send Message
+        </button>
       </form>
     </section>
   );

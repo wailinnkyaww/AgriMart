@@ -25,40 +25,50 @@
 
 // export default App;
 import { BrowserRouter, useLocation } from "react-router-dom";
+
+import { useState } from "react";
+
 import { AppRoutes } from "./navigation/Navigation";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Footer from "./pages/Public/Footer/Footer";
+
 import { useAuth } from "./context/AuthContext";
 
 function Layout() {
   const { user } = useAuth();
   const location = useLocation();
-
-  // Hide sidebar on Home page
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const isHomePage = location.pathname === "/";
-
-  // Show sidebar only when logged in and NOT on Home page
-  const showSidebar = !!user && !isHomePage;
 
   return (
     <div>
-      <Header />
-
-      <div style={{ display: "flex" }}>
-        {showSidebar && <Sidebar />}
-
+      <Header
+        toggleSidebar={() => {
+          setSidebarOpen(!sidebarOpen);
+        }}
+      />
+      <div
+        className="page-wrapper"
+        style={{
+          display: "flex",
+        }}
+      >
+        {user && sidebarOpen && (
+          <Sidebar className={isHomePage ? "home-sidebar" : "sidebar"} />
+        )}
         <main
+          className="main-content"
           style={{
             flex: 1,
             maxWidth: "1520px",
             margin: "0 auto",
+            marginTop: "65px",
           }}
         >
           <AppRoutes />
         </main>
       </div>
-
       <Footer />
     </div>
   );

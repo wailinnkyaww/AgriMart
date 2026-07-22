@@ -230,7 +230,7 @@ import { getHarvests, deleteHarvest } from "../../../services/harvestService";
 import HarvestCard from "../../../components/HarvestCard/HarvestCard";
 import CreateHarvestModal from "../../../components/CreateHarvestModal/CreateHarvestModal";
 import EditHarvestModal from "../../../components/EditHarvestModal/EditHarvestModal";
-import Loader from "../../../components/Loader/Loader";
+import SkeletonCard from "../../../components/Skeleton/SkeletonCard";
 
 const HarvestRecords = () => {
   const { user } = useAuth();
@@ -283,7 +283,13 @@ const HarvestRecords = () => {
   };
 
   if (loading) {
-    return <Loader />;
+    return (
+      <div className="harvest-grid">
+        {[1, 2, 3, 4].map((item) => (
+          <SkeletonCard key={item} type="harvest" />
+        ))}
+      </div>
+    );
   }
 
   return (

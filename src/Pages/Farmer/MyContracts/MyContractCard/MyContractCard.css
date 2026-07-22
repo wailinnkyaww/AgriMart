@@ -67,19 +67,3 @@
 .card-footer {
   margin-top: 25px;
 }
-
-.view-btn {
-  width: 100%;
-  border: none;
-  background: #2d8cff;
-  color: white;
-  padding: 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: .25s;
-}
-
-.view-btn:hover {
-  background: #1976d2;
-}

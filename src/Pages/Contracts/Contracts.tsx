@@ -8,10 +8,11 @@ import ContractCard from "./ContractCard/ContractCard";
 import ContractFilter from "./ContractFilter/ContractFilter";
 import ContractDetails from "./ContractDetails/ContractDetails";
 import CreateContractModal from "./CreateContractModal/CreateContractModal";
+import SkeletonCard from "../../components/Skeleton/SkeletonCard";
 
 const Contracts = () => {
   const [contracts, setContracts] = useState<Contract[]>([]);
-
+  const [loading, setLoading] = useState(true);
   // Filter States
   const [search, setSearch] = useState("");
   const [crop, setCrop] = useState("");
@@ -30,6 +31,8 @@ const Contracts = () => {
       setContracts(data);
     } catch (error) {
       console.error("Error fetching contracts:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -51,12 +54,20 @@ const Contracts = () => {
         status: "Pending",
         appliedAt: new Date().toISOString(),
       });
-
       alert("Application submitted successfully");
     } catch (error) {
       console.error("Apply contract error:", error);
-
       alert("Failed to apply contract");
+    } finally {
+      if (loading) {
+        return (
+          <div className="harvest-grid">
+            {[1, 2, 3, 4, 5, 6].map((item) => (
+              <SkeletonCard key={item} type="contract" />
+            ))}
+          </div>
+        );
+      }
     }
   };
 
@@ -84,60 +95,71 @@ const Contracts = () => {
 
     return matchSearch && matchCrop && matchStatus && matchLocation;
   });
-  return (
-    <div className="contracts-page">
-      <div className="contracts-header">
-        <h1>Available Contracts</h1>
-        <p>Browse available farming contracts and apply.</p>
-        <button
-          className="create-contract-btn"
-          onClick={() => setIsCreateModalOpen(true)}
-        >
-          + Create Contract
-        </button>
+  if (loading) {
+    return (
+      <div className="harvest-grid">
+        {[1, 2, 3, 4].map((item) => (
+          <SkeletonCard key={item} type="harvest" />
+        ))}
       </div>
-
-      <ContractFilter
-        search={search}
-        crop={crop}
-        status={status}
-        location={location}
-        onSearchChange={setSearch}
-        onCropChange={setCrop}
-        onStatusChange={setStatus}
-        onLocationChange={setLocation}
-      />
-
-      {filteredContracts.length === 0 ? (
-        <div className="empty-state">
-          <h2>No Contracts Found</h2>
-          <p>Try changing your search or filters.</p>
+    );
+  }
+  return (
+    <>
+      <div className="contracts-page">
+        <div className="contracts-header">
+          <h1>Available Contracts</h1>
+          <p>Browse available farming contracts and apply.</p>
+          <button
+            className="create-btn"
+            onClick={() => setIsCreateModalOpen(true)}
+          >
+            + Create Contract
+          </button>
         </div>
-      ) : (
-        <div className="contracts-grid">
-          {filteredContracts.map((contract) => (
-            <ContractCard
-              key={contract.id}
-              contract={contract}
-              currentUserId={user?.uid}
-              onApply={handleApply}
-              onView={handleView}
-              onRefresh={loadContracts}
-            />
-          ))}
-        </div>
-      )}
-      <ContractDetails
-        contract={selectedContract}
-        onClose={() => setSelectedContract(null)}
-        onApply={handleApply}
-      />
-      <CreateContractModal
-        isOpen={isCreateModalOpen}
-        onClose={() => setIsCreateModalOpen(false)}
-        onCreated={loadContracts}
-      />
-    </div>
+
+        <ContractFilter
+          search={search}
+          crop={crop}
+          status={status}
+          location={location}
+          onSearchChange={setSearch}
+          onCropChange={setCrop}
+          onStatusChange={setStatus}
+          onLocationChange={setLocation}
+        />
+
+        {filteredContracts.length === 0 ? (
+          <div className="empty-state">
+            <h2>No Contracts Found</h2>
+            <p>Try changing your search or filters.</p>
+          </div>
+        ) : (
+          <div className="contracts-grid">
+            {filteredContracts.map((contract) => (
+              <ContractCard
+                key={contract.id}
+                contract={contract}
+                currentUserId={user?.uid}
+                onApply={handleApply}
+                onView={handleView}
+                onRefresh={loadContracts}
+              />
+            ))}
+          </div>
+        )}
+        <ContractDetails
+          contract={selectedContract}
+          onClose={() => setSelectedContract(null)}
+          onApply={handleApply}
+        />
+        <CreateContractModal
+          isOpen={isCreateModalOpen}
+          onClose={() => setIsCreateModalOpen(false)}
+          onCreated={loadContracts}
+        />
+      </div>
+    </>
   );
 };
 

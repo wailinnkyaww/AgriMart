@@ -14,6 +14,7 @@
   max-height: 90vh;
   overflow-y: auto;
   background: white;
+  margin-top: 70px;
   padding: 25px;
   border-radius: 12px;
 }
@@ -33,6 +34,16 @@
   border-radius: 8px;
   font-size: 15px;
   box-sizing: border-box;
+}
+
+.form-group label {
+  font-style: 16px;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: -10px;
 }
 
 .requirement-section {
@@ -65,7 +76,7 @@
   cursor: pointer;
 }
 
-.create-btn {
+/* .create-btn {
   background: #198754;
   color: white;
   border: none;
@@ -76,7 +87,7 @@
 
 .create-btn:hover {
   background: #157347;
-}
+} */
 
 .cancel-btn:hover {
   background: #5a6268;

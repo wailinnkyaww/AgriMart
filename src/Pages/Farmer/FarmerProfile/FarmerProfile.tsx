@@ -100,7 +100,7 @@ const FarmerProfile = () => {
         </div>
 
         <button
-          className="edit-profile-btn"
+          className="create-btn"
           onClick={() => navigate("/farmer/edit-profile")}
         >
           Edit Profile

@@ -122,7 +122,6 @@ import Loader from "../../../components/Loader/Loader";
 
 const Dashboard = () => {
   const { user } = useAuth();
-
   const [contracts, setContracts] = useState<Contract[]>([]);
   const [loading, setLoading] = useState(true);
 

@@ -8,6 +8,7 @@ import {
   getUserProfile,
   updateUserProfile,
 } from "../../../services/userService";
+import Loader from "../../../components/Loader/Loader";
 
 const EditBuyerProfile = () => {
   const navigate = useNavigate();
@@ -120,7 +121,7 @@ const EditBuyerProfile = () => {
   };
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <Loader />;
   }
 
   return (
@@ -185,11 +186,15 @@ const EditBuyerProfile = () => {
         />
 
         <div className="button-group">
-          <button type="button" onClick={() => navigate("/buyer/profile")}>
+          <button
+            className="cancel-btn"
+            type="button"
+            onClick={() => navigate("/buyer/profile")}
+          >
             Cancel
           </button>
 
-          <button type="submit" disabled={saving}>
+          <button className="create-btn" type="submit" disabled={saving}>
             {saving ? "Saving..." : "Save Changes"}
           </button>
         </div>

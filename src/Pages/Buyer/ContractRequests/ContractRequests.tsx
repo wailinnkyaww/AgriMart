@@ -6,7 +6,7 @@ import type { Contract } from "../../../types/Contract";
 
 import RequestCard from "./RequestCard/RequestCard";
 import ApplicantModal from "./ApplicantModal/ApplicantModal";
-import Loader from "../../../components/Loader/Loader";
+import SkeletonCard from "../../../components/Skeleton/SkeletonCard";
 
 const ContractRequests = () => {
   const { user } = useAuth();
@@ -56,8 +56,10 @@ const ContractRequests = () => {
 
   if (loading) {
     return (
-      <div className="contract-requests-page">
-        <Loader />
+      <div className="harvest-grid">
+        {[1, 2, 3, 4].map((item) => (
+          <SkeletonCard key={item} type="harvest" />
+        ))}
       </div>
     );
   }

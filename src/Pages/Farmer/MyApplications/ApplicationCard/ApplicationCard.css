@@ -52,18 +52,3 @@
 .application-footer {
   margin-top: 20px;
 }
-
-.view-btn {
-  width: 100%;
-  border: none;
-  background: #2d8cff;
-  color: white;
-  padding: 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.view-btn:hover {
-  background: #1976d2;
-}

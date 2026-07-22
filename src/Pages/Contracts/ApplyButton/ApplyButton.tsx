@@ -68,7 +68,7 @@ const ApplyButton = ({ contract, onApplied }: ApplyButtonProps) => {
 
   if (alreadyApplied) {
     return (
-      <button className="apply-btn" disabled>
+      <button className="create-btn" disabled>
         Applied
       </button>
     );
@@ -76,14 +76,14 @@ const ApplyButton = ({ contract, onApplied }: ApplyButtonProps) => {
 
   if (isClosed) {
     return (
-      <button className="apply-btn" disabled>
+      <button className="create-btn" disabled>
         {contract.status}
       </button>
     );
   }
 
   return (
-    <button className="apply-btn" onClick={handleApply} disabled={loading}>
+    <button className="create-btn" onClick={handleApply} disabled={loading}>
       {loading ? "Applying..." : "Apply"}
     </button>
   );

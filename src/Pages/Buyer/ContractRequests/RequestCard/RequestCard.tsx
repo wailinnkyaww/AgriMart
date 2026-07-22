@@ -39,56 +39,60 @@ const RequestCard = ({ contract, onRefresh, onManage }: RequestCardProps) => {
       ) : (
         <div className="request-image placeholder">No Image</div>
       )}
-      <div className="request-header">
-        <h2>{contract.title}</h2>
+      <div className="request-details">
+        <div className="request-header">
+          <h2>{contract.title}</h2>
 
-        <span className={`status ${contract.status.toLowerCase()}`}>
-          {contract.status}
-        </span>
-      </div>
+          <span className={`status ${contract.status.toLowerCase()}`}>
+            {contract.status}
+          </span>
+        </div>
 
-      <div className="request-body">
-        <p>
-          <strong>Buyer:</strong> {contract.creator.fullName}
-        </p>
-        <p>
-          <strong>Crop:</strong> {contract.crop}
-        </p>
+        <div className="request-body">
+          <p>
+            <strong>Buyer:</strong> {contract.creator.fullName}
+          </p>
+          <p>
+            <strong>Crop:</strong> {contract.crop}
+          </p>
 
-        <p>
-          <strong>Location:</strong> {contract.location}
-        </p>
+          <p>
+            <strong>Location:</strong> {contract.location}
+          </p>
 
-        <p>
-          <strong>Quantity:</strong> {contract.quantity} {contract.unit}
-        </p>
+          <p>
+            <strong>Quantity:</strong> {contract.quantity} {contract.unit}
+          </p>
 
-        <p>
-          <strong>Price:</strong> ${contract.price}
-        </p>
+          <p>
+            <strong>Price:</strong> ${contract.price}
+          </p>
 
-        <p>
-          <strong>Applicants:</strong>
-          <span className="applicant-count">{contract.applicants.length}</span>
-        </p>
-      </div>
+          <p>
+            <strong>Applicants:</strong>
+            <span className="applicant-count">
+              {contract.applicants.length}
+            </span>
+          </p>
+        </div>
 
-      <div className="request-actions">
-        <button className="manage-btn" onClick={() => onManage(contract)}>
-          Manage Requests
-        </button>
-
-        {contract.status === "Open" && (
-          <button className="req-close-btn" onClick={handleToggleStatus}>
-            Close Applications
+        <div className="request-actions">
+          <button className="view-btn" onClick={() => onManage(contract)}>
+            Manage Requests
           </button>
-        )}
 
-        {contract.status === "Closed" && (
-          <button className="open-btn" onClick={handleToggleStatus}>
-            Open Applications
-          </button>
-        )}
+          {contract.status === "Open" && (
+            <button className="logout-btn" onClick={handleToggleStatus}>
+              Close Contract
+            </button>
+          )}
+
+          {contract.status === "Closed" && (
+            <button className="create-btn" onClick={handleToggleStatus}>
+              Open Contract
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

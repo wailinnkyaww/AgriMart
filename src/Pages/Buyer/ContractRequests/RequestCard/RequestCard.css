@@ -1,9 +1,12 @@
 .request-card {
   background: #fff;
   border-radius: 14px;
-  padding: 22px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   transition: 0.25s;
+}
+
+.request-details {
+  padding: 20px;
 }
 
 .request-image {
@@ -88,18 +91,10 @@
 
 .request-actions {
   display: flex;
+  justify-content: space-between;
   gap: 12px;
+  margin: 0 auto;
   margin-top: 25px;
-}
-
-.request-actions button {
-  flex: 1;
-  padding: 11px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: .25s;
 }
 
 .applicant-count {
@@ -109,24 +104,6 @@
   border-radius: 20px;
   margin-left: 8px;
   font-size: 13px;
-}
-
-.manage-btn {
-  background: #2d8cff;
-  color: white;
-}
-
-.manage-btn:hover {
-  background: #1d6fe0;
-}
-
-.req-close-btn {
-  background: #dc3545;
-  color: white;
-}
-
-.req-close-btn:hover {
-  background: #b52b38;
 }
 
 .open-btn {
