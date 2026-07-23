@@ -46,7 +46,7 @@ function Header({ toggleSidebar }: Props) {
       <nav className="header-center">
         <Link to="/">Home</Link>
 
-        <Link to="/AllPost">Posts</Link>
+        <Link to="/all-posts">Posts</Link>
 
         <Link to="/contracts">Contracts</Link>
       </nav>

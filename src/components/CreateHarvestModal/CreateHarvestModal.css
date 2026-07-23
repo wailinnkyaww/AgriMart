@@ -2,23 +2,22 @@
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
-
   display: flex;
   justify-content: center;
   align-items: center;
-
+  overflow-y: auto;
   z-index: 999;
 }
 
 .harvest-modal {
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
   width: 650px;
   max-width: 95%;
   background: #fff;
-
   border-radius: 16px;
-
   padding: 30px;
-
+  margin-top: 70px;
   animation: popup .25s ease;
 }
 
@@ -85,42 +84,6 @@
   gap: 15px;
 
   margin-top: 30px;
-}
-
-.cancel-btn {
-  padding: 11px 22px;
-
-  border: none;
-  border-radius: 8px;
-
-  background: #6c757d;
-  color: white;
-
-  cursor: pointer;
-
-  font-weight: 600;
-}
-
-.cancel-btn:hover {
-  background: #5a6268;
-}
-
-.submit-btn {
-  padding: 11px 24px;
-
-  border: none;
-  border-radius: 8px;
-
-  background: #28a745;
-  color: white;
-
-  cursor: pointer;
-
-  font-weight: 600;
-}
-
-.submit-btn:hover:not(:disabled) {
-  background: #218838;
 }
 
 .submit-btn:disabled {

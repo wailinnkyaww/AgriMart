@@ -66,29 +66,3 @@
   gap: 15px;
   margin-top: 25px;
 }
-
-.cancel-btn {
-  background: #6c757d;
-  color: white;
-  border: none;
-  padding: 12px 22px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-/* .create-btn {
-  background: #198754;
-  color: white;
-  border: none;
-  padding: 12px 22px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.create-btn:hover {
-  background: #157347;
-} */
-
-.cancel-btn:hover {
-  background: #5a6268;
-}

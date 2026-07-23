@@ -1,0 +1,352 @@
+/* ========================================
+   CONTRACT PROPOSALS PAGE
+======================================== */
+
+.contract-proposals-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px;
+  box-sizing: border-box;
+  background: #f5f7f6;
+}
+
+/* ========================================
+   HEADER
+======================================== */
+
+.contract-proposals-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.contract-proposals-header h1 {
+  margin: 0 0 8px;
+  color: #1b4332;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.contract-proposals-header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* ========================================
+   LOADING
+======================================== */
+
+.proposal-loading {
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ========================================
+   PROPOSAL GRID
+======================================== */
+
+.proposal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+  width: 100%;
+}
+
+/* ========================================
+   PROPOSAL CARD
+======================================== */
+
+.proposal-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.proposal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   CARD HEADER
+======================================== */
+
+.proposal-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.proposal-card-header h2 {
+  margin: 0;
+  color: #1b4332;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* ========================================
+   STATUS
+======================================== */
+
+.proposal-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Pending */
+
+.proposal-status.pending {
+  color: #92400e;
+  background: #fef3c7;
+}
+
+/* Accepted */
+
+.proposal-status.accepted {
+  color: #166534;
+  background: #dcfce7;
+}
+
+/* Rejected */
+
+.proposal-status.rejected {
+  color: #991b1b;
+  background: #fee2e2;
+}
+
+/* ========================================
+   DETAILS
+======================================== */
+
+.proposal-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.proposal-details p {
+  margin: 0;
+  color: #4b5563;
+  font-size: 14px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.proposal-details strong {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+/* ========================================
+   ACTIONS
+======================================== */
+
+.proposal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #eeeeee;
+}
+
+.accept-proposal-btn,
+.reject-proposal-btn {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+/* Accept */
+
+.accept-proposal-btn {
+  background: #198754;
+  color: white;
+}
+
+.accept-proposal-btn:hover {
+  background: #157347;
+  transform: translateY(-1px);
+}
+
+/* Reject */
+
+.reject-proposal-btn {
+  background: #ef4444;
+  color: white;
+}
+
+.reject-proposal-btn:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+/* ========================================
+   EMPTY STATE
+======================================== */
+
+.proposal-empty {
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.proposal-empty-icon {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  border-radius: 50%;
+  background: #e8f5e9;
+  font-size: 32px;
+}
+
+.proposal-empty h2 {
+  margin: 10px 0;
+  color: #1b4332;
+  font-size: 22px;
+}
+
+.proposal-empty p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1100px) {
+  .proposal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 768px) {
+  .contract-proposals-page {
+    padding: 20px 15px;
+  }
+
+  .contract-proposals-header {
+    margin-bottom: 20px;
+  }
+
+  .contract-proposals-header h1 {
+    font-size: 25px;
+  }
+
+  .contract-proposals-header p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .proposal-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .proposal-card {
+    padding: 20px;
+  }
+
+  .proposal-card-header {
+    align-items: flex-start;
+  }
+
+  .proposal-card-header h2 {
+    font-size: 18px;
+  }
+
+  .proposal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .accept-proposal-btn,
+  .reject-proposal-btn {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .proposal-empty {
+    min-height: 300px;
+    padding: 30px 20px;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media (max-width: 480px) {
+  .contract-proposals-page {
+    padding: 15px 12px;
+  }
+
+  .contract-proposals-header h1 {
+    font-size: 22px;
+  }
+
+  .proposal-card {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .proposal-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .proposal-status {
+    font-size: 11px;
+  }
+
+  .proposal-details p {
+    font-size: 13px;
+  }
+
+  .proposal-empty h2 {
+    font-size: 19px;
+  }
+
+  .proposal-empty p {
+    font-size: 13px;
+  }
+}

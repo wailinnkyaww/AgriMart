@@ -4,6 +4,7 @@ import "./CreateHarvestModal.css";
 import { useAuth } from "../../context/AuthContext";
 
 import { getContracts } from "../../services/contractService";
+
 import { createHarvest } from "../../services/harvestService";
 
 import type { Contract } from "../../types/Contract";
@@ -118,89 +119,81 @@ const CreateHarvestModal = ({ isOpen, onClose, onCreated }: Props) => {
 
   return (
     <div className="modal-overlay">
+      {" "}
       <div className="harvest-modal">
-        <h2>Add Harvest Record</h2>
-
+        {" "}
+        <h2>Add Harvest Record</h2>{" "}
         <form onSubmit={handleSubmit}>
-          <label>Contract</label>
-
+          {" "}
+          <label>Contract</label>{" "}
           <select
             name="contractId"
             value={formData.contractId}
             onChange={handleChange}
             required
           >
-            <option value="">Select Contract</option>
-
+            {" "}
+            <option value="">Select Contract</option>{" "}
             {contracts.map((contract) => (
               <option key={contract.id} value={contract.id}>
+                {" "}
                 {contract.title}
               </option>
             ))}
-          </select>
-
-          <label>Harvest Quantity (KG)</label>
-
+          </select>{" "}
+          <label>Harvest Quantity (KG)</label>{" "}
           <input
             type="number"
             name="quantity"
             value={formData.quantity}
             onChange={handleChange}
             required
-          />
-
-          <label>Harvest Date</label>
-
+          />{" "}
+          <label>Harvest Date</label>{" "}
           <input
             type="date"
             name="harvestDate"
             value={formData.harvestDate}
             onChange={handleChange}
             required
-          />
-
-          <label>Quality</label>
-
+          />{" "}
+          <label>Quality</label>{" "}
           <select
             name="quality"
             value={formData.quality}
             onChange={handleChange}
           >
-            <option>Excellent</option>
-            <option>Good</option>
-            <option>Average</option>
-            <option>Poor</option>
-          </select>
-
-          <label>Image URL</label>
-
+            {" "}
+            <option>Excellent</option> <option>Good</option>{" "}
+            <option>Average</option> <option>Poor</option>{" "}
+          </select>{" "}
+          <label>Image URL</label>{" "}
           <input
             type="text"
             name="image"
             value={formData.image}
             onChange={handleChange}
-          />
-
-          <label>Notes</label>
-
+          />{" "}
+          <label>Notes</label>{" "}
           <textarea
             rows={4}
             name="notes"
             value={formData.notes}
             onChange={handleChange}
-          />
-
+          />{" "}
           <div className="modal-buttons">
+            {" "}
             <button type="button" className="cancel-btn" onClick={onClose}>
-              Cancel
-            </button>
-
-            <button type="submit" className="submit-btn" disabled={loading}>
+              {" "}
+              Cancel{" "}
+            </button>{" "}
+            <button type="submit" className="create-btn" disabled={loading}>
+              {" "}
               {loading ? "Submitting..." : "Submit Harvest"}
-            </button>
-          </div>
-        </form>
-      </div>
+            </button>{" "}
+          </div>{" "}
+        </form>{" "}
+      </div>{" "}
     </div>
   );
 };

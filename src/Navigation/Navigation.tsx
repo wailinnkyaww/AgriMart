@@ -8,10 +8,11 @@ import Register from "../components/RegisterForm/RegisterForm";
 import Login from "../components/LoginForm/LoginForm";
 import Contracts from "../pages/Contracts/Contracts"; //to show all contracts
 //import CreateContracts from "../pages/Contracts/CreateContract/CreateContract"; //create new contractsz
-import FarmerPosts from "../pages/Posts/FarmerPosts";
+import BuyerFarmerPosts from "../pages/Buyer/FarmerPosts/FarmerPosts";
 import { PostDetail } from "../pages/Posts/PostDetail";
 
-import CompanyOffers from "../pages/Farmer/CompanyOffers/CompanyOffers";
+import FarmerPosts from "../pages/Farmer/MyPosts/MyPosts";
+import ContractProposals from "../pages/Farmer/ContractProposals/ContractProposals";
 import Dashboard from "../pages/Farmer/Dashboard/Dashboard";
 import HarvestRecords from "../pages/Farmer/HarvestRecords/HarvestRecords";
 import MyContracts from "../pages/Farmer/MyContracts/MyContracts";
@@ -23,7 +24,7 @@ import Reports from "../pages/Farmer/Reports/Reports";
 
 import BuyerDashboard from "../pages/Buyer/Dashboard/Dashboard";
 import ContractRequest from "../pages/Buyer/ContractRequests/ContractRequests";
-import Farmers from "../pages/Buyer/Farmers/Farmers";
+import Farmers from "../pages/Buyer/FarmerPosts/FarmerPosts";
 import AdminNotifications from "../pages/Buyer/Notifications/Notifications";
 import BuyerPayment from "../pages/Buyer/Payment/Payments";
 import BuyerProfile from "../pages/Buyer/BuyerProfile/BuyerProfile";
@@ -40,8 +41,8 @@ export const AppRoutes = () => (
     <Route path="/" element={<Home />} />
     <Route path="/register" element={<Register />} />
     <Route path="/login" element={<Login />} />
-    <Route path="/allPost" element={<AllPost />} />
-    <Route path="/farmerPost" element={<FarmerPosts />} />
+    <Route path="/all-posts" element={<AllPost />} />
+    {/* <Route path="/farmerPost" element={<FarmerPost />} /> */}
     <Route path="/farmerPostDetails/:id" element={<PostDetail />} />
     <Route path="/contracts" element={<Contracts />} /> //create contracts
     {/* <Route path="/contracts" element={<CreateContract />} /   //all contracts */}
@@ -49,7 +50,8 @@ export const AppRoutes = () => (
     <Route path="/adminProfile" element={<AdminProfile />} />
     <Route path="/userProfile" element={<UserProfile />} />
     {/* farmer route */}
-    <Route path="/farmer/offers" element={<CompanyOffers />} />
+    <Route path="/farmer/farmer-posts" element={<FarmerPosts />} />
+    <Route path="/farmer/contract-proposals" element={<ContractProposals />} />
     <Route path="/farmer/dashboard" element={<Dashboard />} />
     <Route path="/farmer/harvestRecords" element={<HarvestRecords />} />
     <Route path="/farmer/myContracts" element={<MyContracts />} />
@@ -63,7 +65,7 @@ export const AppRoutes = () => (
     <Route path="/buyer/contracts" element={<ContractRequest />} />
     <Route path="/buyer/create-contract" element={<CreateContract />} />
     <Route path="/buyer/dashboard" element={<BuyerDashboard />} />
-    <Route path="/buyer/farmers" element={<Farmers />} />
+    <Route path="/buyer/farmer-posts" element={<BuyerFarmerPosts />} />
     <Route path="/buyer/notifications" element={<AdminNotifications />} />
     <Route path="/buyer/payment" element={<BuyerPayment />} />
     <Route path="/buyer/profile" element={<BuyerProfile />} />

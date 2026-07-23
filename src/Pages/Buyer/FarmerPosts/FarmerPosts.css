@@ -1,0 +1,447 @@
+.farmer-posts-page {
+  width: 100%;
+  max-width: 1520px;
+  margin: 0 auto;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+/* ================= HEADER ================= */
+
+.farmer-posts-header {
+  margin-bottom: 30px;
+}
+
+.farmer-posts-header h1 {
+  margin: 0 0 8px;
+
+  color: #1b4332;
+  font-size: 30px;
+}
+
+.farmer-posts-header p {
+  margin: 0;
+
+  color: #666;
+}
+
+/* ================= GRID ================= */
+
+.farmer-posts-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit,
+      minmax(300px, 1fr));
+
+  gap: 25px;
+}
+
+/* ================= CARD ================= */
+
+.farmer-post-card {
+  background: white;
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  border: 1px solid #e5e5e5;
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.06);
+
+  transition: 0.25s;
+}
+
+.farmer-post-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* ================= IMAGE ================= */
+
+.farmer-post-image-container {
+  position: relative;
+
+  width: 100%;
+  height: 210px;
+
+  overflow: hidden;
+}
+
+.farmer-post-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.available-badge {
+  position: absolute;
+
+  top: 12px;
+  right: 12px;
+
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  background: #198754;
+  color: white;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ================= CONTENT ================= */
+
+.farmer-post-content {
+  padding: 20px;
+}
+
+.farmer-post-content h2 {
+  margin: 0 0 8px;
+
+  color: #1b4332;
+
+  font-size: 20px;
+}
+
+.post-crop {
+  margin: 0 0 15px;
+
+  color: #198754;
+
+  font-weight: 600;
+}
+
+/* ================= DETAILS ================= */
+
+.farmer-post-details {
+  padding: 12px;
+
+  margin-bottom: 15px;
+
+  background: #f8f9fa;
+
+  border-radius: 8px;
+}
+
+.farmer-post-details p {
+  margin: 7px 0;
+
+  color: #555;
+
+  font-size: 14px;
+}
+
+.farmer-post-description {
+  color: #666;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 3;
+
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+
+  margin-bottom: 20px;
+}
+
+/* ================= SEND BUTTON ================= */
+
+.send-contract-btn {
+  width: 100%;
+
+  padding: 12px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #198754;
+
+  color: white;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.send-contract-btn:hover {
+  background: #157347;
+}
+
+/* ================= MODAL ================= */
+
+.send-contract-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 10000;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 20px;
+
+  background: rgba(0,
+      0,
+      0,
+      0.5);
+}
+
+.send-contract-modal {
+  position: relative;
+
+  width: 500px;
+
+  max-width: 100%;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  padding: 30px;
+
+  background: white;
+
+  border-radius: 15px;
+
+  box-sizing: border-box;
+}
+
+.send-contract-modal h2 {
+  margin-top: 0;
+
+  color: #1b4332;
+}
+
+.send-contract-modal>p {
+  color: #666;
+}
+
+/* ================= CLOSE ================= */
+
+.close-modal-btn {
+  position: absolute;
+
+  top: 12px;
+  right: 15px;
+
+  width: 32px;
+  height: 32px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #f1f1f1;
+
+  font-size: 22px;
+
+  cursor: pointer;
+}
+
+/* ================= FARMER INFO ================= */
+
+.selected-farmer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+  padding: 15px;
+
+  margin: 15px 0 20px;
+
+  background: #f0f8f4;
+
+  border-radius: 8px;
+
+  color: #1b4332;
+}
+
+.selected-farmer span {
+  color: #666;
+
+  font-size: 14px;
+}
+
+/* ================= SELECT ================= */
+
+.send-contract-modal label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-weight: 600;
+
+  color: #444;
+}
+
+.send-contract-modal select {
+  width: 100%;
+
+  padding: 12px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 8px;
+
+  font-size: 15px;
+
+  box-sizing: border-box;
+}
+
+/* ================= NO CONTRACT ================= */
+
+.no-contracts {
+  padding: 15px;
+
+  margin-top: 10px;
+
+  background: #fff3cd;
+
+  border-radius: 8px;
+
+  color: #856404;
+}
+
+.no-contracts p {
+  margin: 5px 0;
+}
+
+/* ================= ACTIONS ================= */
+
+.send-contract-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  margin-top: 25px;
+}
+
+.cancel-send-btn,
+.confirm-send-btn {
+  padding: 11px 20px;
+
+  border: none;
+
+  border-radius: 7px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.cancel-send-btn {
+  background: #6c757d;
+
+  color: white;
+}
+
+.confirm-send-btn {
+  background: #198754;
+
+  color: white;
+}
+
+.confirm-send-btn:disabled {
+  background: #9ac9ad;
+
+  cursor: not-allowed;
+}
+
+/* ================= EMPTY ================= */
+
+.farmer-posts-empty {
+  min-height: 400px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  text-align: center;
+
+  padding: 40px;
+
+  background: #f8f9fa;
+
+  border-radius: 15px;
+}
+
+.farmer-posts-empty h2 {
+  color: #1b4332;
+}
+
+.farmer-posts-empty p {
+  color: #666;
+}
+
+.empty-icon {
+  font-size: 50px;
+}
+
+/* ================= LOADING ================= */
+
+.farmer-posts-loading {
+  min-height: 400px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+  .farmer-posts-page {
+    padding: 20px 15px;
+  }
+
+  .farmer-posts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .farmer-posts-header h1 {
+    font-size: 25px;
+  }
+
+  .send-contract-modal {
+    padding: 25px 20px;
+  }
+
+  .send-contract-actions {
+    flex-direction: column;
+  }
+
+  .cancel-send-btn,
+  .confirm-send-btn {
+    width: 100%;
+  }
+}

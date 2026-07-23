@@ -60,8 +60,9 @@
 }
 
 .cancel-btn {
-  background: #fff;
-  color: grey;
+  background: grey;
+  color: #fff;
+
   border: none;
   padding: 10px 20px;
   border-radius: 10px;
@@ -70,8 +71,8 @@
 }
 
 .cancel-btn:hover {
-  background: grey;
-  color: #fff;
+  background: #fff;
+  color: grey;
 }
 
 .logout-btn {

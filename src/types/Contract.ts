@@ -79,11 +79,8 @@ export interface Creator {
 
 export interface Contract {
   id: string;
-
   creator: Creator;
-
   applicants: Applicant[] | null;
-
   status: string;
   title: string;
   crop: string;

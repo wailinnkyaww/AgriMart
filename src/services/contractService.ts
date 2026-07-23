@@ -53,3 +53,25 @@ export const getCompletedContractCount = async (): Promise<number> => {
 
   return snapshot.size;
 };
+
+export const acceptContractProposal = async (
+  contractId: string,
+  farmerId: string,
+) => {
+  const contractRef = doc(db, "contracts", contractId);
+
+  await updateDoc(contractRef, {
+    selectedApplicant: farmerId,
+    status: "Assigned",
+    updatedAt: new Date().toISOString(),
+  });
+};
+
+export const rejectContractProposal = async (contractId: string) => {
+  const contractRef = doc(db, "contracts", contractId);
+
+  await updateDoc(contractRef, {
+    status: "Rejected",
+    updatedAt: new Date().toISOString(),
+  });
+};

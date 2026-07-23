@@ -172,11 +172,11 @@ function Sidebar({ className = "sidebar" }: SidebarProps) {
                   </Link>
                 </li>
 
-                <li>
+                {/* <li>
                   <Link className="link" to="/buyer/create-contract">
                     Create Contract
                   </Link>
-                </li>
+                </li> */}
 
                 <li>
                   <Link className="link" to="/buyer/profile">
@@ -190,9 +190,15 @@ function Sidebar({ className = "sidebar" }: SidebarProps) {
                   </Link>
                 </li>
 
-                <li>
+                {/* <li>
                   <Link className="link" to="/buyer/farmers">
                     Farmers
+                  </Link>
+                </li> */}
+
+                <li>
+                  <Link className="link" to="/buyer/farmer-posts">
+                    Farmer Posts
                   </Link>
                 </li>
 
@@ -202,7 +208,7 @@ function Sidebar({ className = "sidebar" }: SidebarProps) {
                   </Link>
                 </li>
 
-                <li>
+                {/* <li>
                   <Link className="link" to="/buyer/purchases">
                     Rice Purchases
                   </Link>
@@ -212,7 +218,7 @@ function Sidebar({ className = "sidebar" }: SidebarProps) {
                   <Link className="link" to="/buyer/payment">
                     Payments
                   </Link>
-                </li>
+                </li> */}
 
                 <li>
                   <Link className="link" to="/buyer/reports">
@@ -220,11 +226,11 @@ function Sidebar({ className = "sidebar" }: SidebarProps) {
                   </Link>
                 </li>
 
-                <li>
+                {/* <li>
                   <Link className="link" to="/buyer/notifications">
                     Notifications
                   </Link>
-                </li>
+                </li> */}
               </>
             )}
 
@@ -240,6 +246,18 @@ function Sidebar({ className = "sidebar" }: SidebarProps) {
                 <li>
                   <Link className="link" to="/farmer/profile">
                     Profile
+                  </Link>
+                </li>
+
+                <li>
+                  <Link className="link" to="/farmer/farmer-posts">
+                    My Posts
+                  </Link>
+                </li>
+
+                <li>
+                  <Link className="link" to="/farmer/contract-proposals">
+                    Contract Proposals
                   </Link>
                 </li>
 
@@ -261,7 +279,7 @@ function Sidebar({ className = "sidebar" }: SidebarProps) {
                   </Link>
                 </li>
 
-                <li>
+                {/* <li>
                   <Link className="link" to="/farmer/payment">
                     Payments
                   </Link>
@@ -271,7 +289,7 @@ function Sidebar({ className = "sidebar" }: SidebarProps) {
                   <Link className="link" to="/farmer/offers">
                     Company Offers
                   </Link>
-                </li>
+                </li> */}
 
                 <li>
                   <Link className="link" to="/farmer/reports">
@@ -279,11 +297,11 @@ function Sidebar({ className = "sidebar" }: SidebarProps) {
                   </Link>
                 </li>
 
-                <li>
+                {/* <li>
                   <Link className="link" to="/farmer/notifications">
                     Notifications
                   </Link>
-                </li>
+                </li> */}
               </>
             )}
           </ul>

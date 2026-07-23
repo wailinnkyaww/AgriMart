@@ -1,54 +1,63 @@
-// import FarmerPosts from "./FarmerPosts";
-
-// export default function AllPost() {
-//   return (
-//     <>
-//       <FarmerPosts />
-//     </>
-//   );
-// }
-
 import { useEffect, useState } from "react";
-import "../Farmer/FarmerPosts/FarmerPosts.css";
+import "./FarmerPosts.css";
 
-import { useAuth } from "../../context/AuthContext";
-import SendContractModal from "../../components/SendContractModal/SendContractModal";
+import { useAuth } from "../../../context/AuthContext";
+import SendContractModal from "../../../components/SendContractModal/SendContractModal";
 
-import { getPosts } from "../../services/postService";
+import { getPosts } from "../../../services/postService";
+import { getContracts } from "../../../services/contractService";
 
-import type { Post } from "../../types/Post";
+import type { Post } from "../../../types/Post";
+import type { Contract } from "../../../types/Contract";
 
-import Loader from "../../components/Loader/Loader";
+import Loader from "../../../components/Loader/Loader";
 
 const FarmerPosts = () => {
   const { user } = useAuth();
 
   const [posts, setPosts] = useState<Post[]>([]);
+  const [contracts, setContracts] = useState<Contract[]>([]);
+
   const [loading, setLoading] = useState(true);
 
-  // Selected farmer post for sending contract
+  // Selected post for Send Contract Modal
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
 
   // ========================================
-  // Load All Farmer Posts
+  // Load Farmer Posts and Buyer Contracts
   // ========================================
 
   const loadData = async () => {
+    if (!user) return;
+
     try {
       setLoading(true);
 
-      const allPosts = await getPosts();
+      const [allPosts, allContracts] = await Promise.all([
+        getPosts(),
+        getContracts(),
+      ]);
 
       // ========================================
-      // Show ALL available farmer posts
-      // Both Buyer and Farmer can see them
+      // Show only available posts
+      // Do not show buyer's own posts
       // ========================================
 
       const availablePosts = allPosts.filter(
-        (post) => post.status === "Available",
+        (post) => post.status === "Available" && post.farmer?.uid !== user.uid,
+      );
+
+      // ========================================
+      // Show only current buyer's open contracts
+      // ========================================
+
+      const myContracts = allContracts.filter(
+        (contract) =>
+          contract.creator?.uid === user.uid && contract.status === "Open",
       );
 
       setPosts(availablePosts);
+      setContracts(myContracts);
     } catch (error) {
       console.error("Error loading farmer posts:", error);
     } finally {
@@ -56,30 +65,15 @@ const FarmerPosts = () => {
     }
   };
 
-  // ========================================
-  // Load Posts
-  // ========================================
-
   useEffect(() => {
     loadData();
-  }, []);
+  }, [user]);
 
   // ========================================
   // Open Send Contract Modal
-  // Only Buyer should use this
   // ========================================
 
   const handleSendContract = (post: Post) => {
-    if (!user) {
-      alert("Please login first.");
-      return;
-    }
-
-    if (user.role !== "Buyer") {
-      alert("Only buyers can send contract proposals.");
-      return;
-    }
-
     setSelectedPost(post);
   };
 
@@ -96,7 +90,7 @@ const FarmerPosts = () => {
   }
 
   return (
-    <div className="farmer-posts-container">
+    <div className="farmer-posts-page">
       {/* ================= HEADER ================= */}
 
       <div className="farmer-posts-header">
@@ -104,9 +98,8 @@ const FarmerPosts = () => {
           <h1>Farmer Posts</h1>
 
           <p>
-            Browse available crops posted by farmers.
-            {user?.role === "Buyer" &&
-              " You can send your existing contracts to farmers."}
+            Browse available crops posted by farmers and send your existing
+            contracts.
           </p>
         </div>
       </div>
@@ -150,8 +143,7 @@ const FarmerPosts = () => {
 
                 <div className="farmer-post-details">
                   <p>
-                    <strong>Farmer:</strong>{" "}
-                    {post.farmer?.fullName || "Unknown Farmer"}
+                    <strong>Farmer:</strong> {post.farmer?.fullName}
                   </p>
 
                   <p>
@@ -176,52 +168,35 @@ const FarmerPosts = () => {
                   </p>
                 </div>
 
-                {/* ================= DESCRIPTION ================= */}
-
                 {post.description && (
                   <p className="farmer-post-description">{post.description}</p>
                 )}
 
-                {/* ============================================
-                    BUYER ONLY
-                    Send Contract Button
-                ============================================ */}
+                {/* ================= SEND CONTRACT ================= */}
 
-                {user?.role === "Buyer" && (
-                  <button
-                    className="send-contract-btn"
-                    onClick={() => handleSendContract(post)}
-                  >
-                    Send Contract
-                  </button>
-                )}
-
-                {/* ============================================
-                    FARMER VIEW
-                ============================================ */}
-
-                {user?.role === "Farmer" && (
-                  <div className="farmer-post-view-message">
-                    You are viewing available farmer posts.
-                  </div>
-                )}
+                <button
+                  className="send-contract-btn"
+                  onClick={() => handleSendContract(post)}
+                  disabled={contracts.length === 0}
+                >
+                  {contracts.length === 0
+                    ? "No Open Contract"
+                    : "Send Contract"}
+                </button>
               </div>
             </div>
           ))}
         </div>
       )}
 
-      {/* ============================================
-          SEND CONTRACT MODAL
-          Only Buyer can open this modal
-      ============================================ */}
+      {/* ================= SEND CONTRACT MODAL ================= */}
 
-      {selectedPost && user?.role === "Buyer" && (
+      {selectedPost && (
         <SendContractModal
           isOpen={true}
           onClose={() => setSelectedPost(null)}
-          farmerId={selectedPost.farmer?.uid}
-          farmerName={selectedPost.farmer?.fullName || "Unknown Farmer"}
+          farmerId={selectedPost.farmer.uid}
+          farmerName={selectedPost.farmer.fullName}
           postId={selectedPost.id}
           onSent={() => {
             setSelectedPost(null);
