@@ -5,7 +5,7 @@ import { getContracts } from "../../../services/contractService";
 import type { Contract } from "../../../types/Contract";
 import ApplicationCard from "./ApplicationCard/ApplicationCard";
 import ContractDetails from "../../Contracts/ContractDetails/ContractDetails";
-import Loader from "../../../components/Loader/Loader";
+import Loader from "../../../components/Common/Loader/Loader";
 
 const MyApplications = () => {
   const { user } = useAuth();

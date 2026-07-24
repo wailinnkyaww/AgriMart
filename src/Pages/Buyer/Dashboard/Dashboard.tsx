@@ -178,7 +178,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { getContracts } from "../../../services/contractService";
 
 import type { Contract } from "../../../types/Contract";
-import Loader from "../../../components/Loader/Loader";
+import Loader from "../../../components/Common/Loader/Loader";
 
 const Dashboard = () => {
   const { user } = useAuth();

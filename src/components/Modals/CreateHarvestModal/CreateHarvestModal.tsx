@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import "./CreateHarvestModal.css";
+import { uploadImage } from "../../../services/cloudinaryService";
+import { useAuth } from "../../../context/AuthContext";
 
-import { useAuth } from "../../context/AuthContext";
+import { getContracts } from "../../../services/contractService";
 
-import { getContracts } from "../../services/contractService";
+import { createHarvest } from "../../../services/harvestService";
 
-import { createHarvest } from "../../services/harvestService";
-
-import type { Contract } from "../../types/Contract";
+import type { Contract } from "../../../types/Contract";
 
 interface Props {
   isOpen: boolean;
@@ -36,6 +36,23 @@ const CreateHarvestModal = ({ isOpen, onClose, onCreated }: Props) => {
       loadContracts();
     }
   }, [isOpen]);
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (!file) return;
+
+    try {
+      const imageUrl = await uploadImage(file);
+
+      setFormData((prev) => ({
+        ...prev,
+        image: imageUrl,
+      }));
+    } catch (error) {
+      console.error(error);
+      alert("Image upload failed.");
+    }
+  };
 
   const loadContracts = async () => {
     if (!user) return;
@@ -119,81 +136,70 @@ const CreateHarvestModal = ({ isOpen, onClose, onCreated }: Props) => {
 
   return (
     <div className="modal-overlay">
-      {" "}
       <div className="harvest-modal">
-        {" "}
-        <h2>Add Harvest Record</h2>{" "}
+        <h2>Add Harvest Record</h2>
         <form onSubmit={handleSubmit}>
-          {" "}
-          <label>Contract</label>{" "}
+          <label>Contract</label>
           <select
             name="contractId"
             value={formData.contractId}
             onChange={handleChange}
             required
           >
-            {" "}
-            <option value="">Select Contract</option>{" "}
+            <option value="">Select Contract</option>
             {contracts.map((contract) => (
               <option key={contract.id} value={contract.id}>
-                {" "}
                 {contract.title}
               </option>
             ))}
-          </select>{" "}
-          <label>Harvest Quantity (KG)</label>{" "}
+          </select>
+          <label>Harvest Quantity (KG)</label>
           <input
             type="number"
             name="quantity"
             value={formData.quantity}
             onChange={handleChange}
             required
-          />{" "}
-          <label>Harvest Date</label>{" "}
+          />
+          <label>Harvest Date</label>
           <input
             type="date"
             name="harvestDate"
             value={formData.harvestDate}
             onChange={handleChange}
             required
-          />{" "}
-          <label>Quality</label>{" "}
+          />
+          <label>Quality</label>
           <select
             name="quality"
             value={formData.quality}
             onChange={handleChange}
           >
-            {" "}
-            <option>Excellent</option> <option>Good</option>{" "}
-            <option>Average</option> <option>Poor</option>{" "}
-          </select>{" "}
-          <label>Image URL</label>{" "}
-          <input
-            type="text"
-            name="image"
-            value={formData.image}
-            onChange={handleChange}
-          />{" "}
-          <label>Notes</label>{" "}
+            <option>Excellent</option> <option>Good</option>
+            <option>Average</option> <option>Poor</option>
+          </select>
+          <label>Image URL</label>
+          {formData.image && (
+            <img src={formData.image} alt="Harvest" className="preview-image" />
+          )}
+          <input type="file" accept="image/*" onChange={handleImageUpload} />
+          <label>Notes</label>
           <textarea
             rows={4}
             name="notes"
             value={formData.notes}
             onChange={handleChange}
-          />{" "}
+          />
           <div className="modal-buttons">
-            {" "}
             <button type="button" className="cancel-btn" onClick={onClose}>
-              {" "}
-              Cancel{" "}
-            </button>{" "}
+              Cancel
+            </button>
             <button type="submit" className="create-btn" disabled={loading}>
-              {" "}
               {loading ? "Submitting..." : "Submit Harvest"}
-            </button>{" "}
-          </div>{" "}
-        </form>{" "}
-      </div>{" "}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

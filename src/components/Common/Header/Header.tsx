@@ -1,13 +1,12 @@
 import "./Header.css";
-import NotificationModal from "../NotificationModal/NotificationModal";
+import NotificationModal from "../../Modals/NotificationModal/NotificationModal";
 import { useState } from "react";
 import { FaBars, FaBell, FaCog } from "react-icons/fa";
 import { VscSignOut } from "react-icons/vsc";
 import { useNavigate, Link } from "react-router-dom";
-import Logo from "../../assets/images/home/logo-2.png";
-import { useAuth } from "../../context/AuthContext";
-import AuthModal from "../AuthModal/AuthModal";
-
+import Logo from "../../../assets/images/home/logo-2.png";
+import { useAuth } from "../../../context/AuthContext";
+import AuthModal from "../../Auth/AuthModal/AuthModal";
 import Loader from "../Loader/Loader";
 
 interface Props {

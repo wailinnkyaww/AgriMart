@@ -14,7 +14,7 @@ interface Props {
 
 const HarvestCard = ({
   harvest,
-  isFarmer = false,
+  isFarmer,
   onRefresh,
   onEdit,
   onDelete,
@@ -65,7 +65,7 @@ const HarvestCard = ({
             <strong>Notes</strong> <p> {harvest.notes}</p>
           </div>
         )}
-        {isFarmer && (
+        {isFarmer === true && (
           <div className="harvest-actions">
             <button className="edit-btn" onClick={() => onEdit?.(harvest)}>
               Edit

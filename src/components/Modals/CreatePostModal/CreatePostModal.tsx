@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../config/firebase";
-import { useAuth } from "../../context/AuthContext";
-import { uploadImage } from "../../services/cloudinaryService";
+import { db } from "../../../config/firebase";
+import { useAuth } from "../../../context/AuthContext";
+import { uploadImage } from "../../../services/cloudinaryService";
 import "./CreatePostModal.css";
 
 interface Props {

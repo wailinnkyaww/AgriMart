@@ -8,7 +8,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { getContracts } from "../../../services/contractService";
 import { getPayments } from "../../../services/paymentService";
 import { getHarvests } from "../../../services/harvestService";
-import Loader from "../../../components/Loader/Loader";
+import Loader from "../../../components/Common/Loader/Loader";
 
 const Reports = () => {
   const { user } = useAuth();

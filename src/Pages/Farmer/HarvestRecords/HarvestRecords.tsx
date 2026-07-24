@@ -228,8 +228,8 @@ import type { Harvest } from "../../../types/Harvest";
 import { getHarvests, deleteHarvest } from "../../../services/harvestService";
 
 import HarvestCard from "../../../components/HarvestCard/HarvestCard";
-import CreateHarvestModal from "../../../components/CreateHarvestModal/CreateHarvestModal";
-import EditHarvestModal from "../../../components/EditHarvestModal/EditHarvestModal";
+import CreateHarvestModal from "../../../components/Modals/CreateHarvestModal/CreateHarvestModal";
+import EditHarvestModal from "../../../components/Modals/EditHarvestModal/EditHarvestModal";
 import SkeletonCard from "../../../components/Skeleton/SkeletonCard";
 
 const HarvestRecords = () => {
@@ -325,7 +325,7 @@ const HarvestRecords = () => {
                 setSelectedHarvest(harvest);
                 setShowEditModal(true);
               }}
-              onDelete={deleteHarvest}
+              onDelete={handleDelete}
             />
           ))}
         </div>

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import "./SendContractModal.css";
 
-import { useAuth } from "../../context/AuthContext";
-import { getContracts } from "../../services/contractService";
-import { sendContractProposal } from "../../services/contractProposalService";
+import { useAuth } from "../../../context/AuthContext";
+import { getContracts } from "../../../services/contractService";
+import { sendContractProposal } from "../../../services/contractProposalService";
 
-import type { Contract } from "../../types/Contract";
+import type { Contract } from "../../../types/Contract";
 
 interface Props {
   isOpen: boolean;

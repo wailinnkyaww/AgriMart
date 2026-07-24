@@ -8,7 +8,7 @@ import {
   getUserProfile,
   updateUserProfile,
 } from "../../../services/userService";
-import Loader from "../../../components/Loader/Loader";
+import Loader from "../../../components/Common/Loader/Loader";
 
 const EditFarmerProfile = () => {
   const navigate = useNavigate();

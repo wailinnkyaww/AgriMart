@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./EditHarvestModal.css";
 
-import { updateHarvest } from "../../services/harvestService";
-import { uploadImage } from "../../services/cloudinaryService";
+import { updateHarvest } from "../../../services/harvestService";
+import { uploadImage } from "../../../services/cloudinaryService";
 
-import type { Harvest } from "../../types/Harvest";
+import type { Harvest } from "../../../types/Harvest";
 
 interface Props {
   harvest: Harvest;

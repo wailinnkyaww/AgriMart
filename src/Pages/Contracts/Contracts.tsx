@@ -109,13 +109,15 @@ const Contracts = () => {
       <div className="contracts-page">
         <div className="contracts-header">
           <h1>Available Contracts</h1>
-          <p>Browse available farming contracts and apply.</p>
-          <button
-            className="create-btn"
-            onClick={() => setIsCreateModalOpen(true)}
-          >
-            + Create Contract
-          </button>
+          {/* <p>Browse available farming contracts and apply.</p> */}
+          {user.role === "Buyer" && (
+            <button
+              className="create-btn"
+              onClick={() => setIsCreateModalOpen(true)}
+            >
+              + Create Contract
+            </button>
+          )}
         </div>
 
         <ContractFilter

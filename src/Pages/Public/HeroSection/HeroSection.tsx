@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import { useState } from "react";
-import AuthModal from "../../../components/AuthModal/AuthModal";
+import AuthModal from "../../../components/Auth/AuthModal/AuthModal";
 import Hero_01 from "../../../assets/images/home/hero_01.jpg";
 import Hero_02 from "../../../assets/images/home/hero_02.jpg";
 import Hero_03 from "../../../assets/images/home/hero_03.jpg";

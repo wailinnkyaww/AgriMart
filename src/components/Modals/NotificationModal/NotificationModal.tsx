@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 
 import "./NotificationModal.css";
 
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../../context/AuthContext";
 
 import {
   getUserNotifications,
   markAsRead,
-} from "../../services/notificationService";
+} from "../../../services/notificationService";
 
-import type { Notification } from "../../types/Notification";
+import type { Notification } from "../../../types/Notification";
 
 interface Props {
   open: boolean;

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./FarmerPosts.css";
 
 import { useAuth } from "../../../context/AuthContext";
-import SendContractModal from "../../../components/SendContractModal/SendContractModal";
+import SendContractModal from "../../../components/Modals/SendContractModal/SendContractModal";
 
 import { getPosts } from "../../../services/postService";
 import { getContracts } from "../../../services/contractService";
@@ -10,7 +10,7 @@ import { getContracts } from "../../../services/contractService";
 import type { Post } from "../../../types/Post";
 import type { Contract } from "../../../types/Contract";
 
-import Loader from "../../../components/Loader/Loader";
+import Loader from "../../../components/Common/Loader/Loader";
 
 const FarmerPosts = () => {
   const { user } = useAuth();

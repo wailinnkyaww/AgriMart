@@ -15,7 +15,7 @@ import type { ContractProposal } from "../../../types/ContractProposal";
 import type { Contract } from "../../../types/Contract";
 
 import ContractDetails from "../../Contracts/ContractDetails/ContractDetails";
-import Loader from "../../../components/Loader/Loader";
+import Loader from "../../../components/Common/Loader/Loader";
 // Change this import path to your actual ContractDetails location.
 
 const ContractProposals = () => {

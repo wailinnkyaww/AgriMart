@@ -153,7 +153,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { getPayments } from "../../../services/paymentService";
 
 import type { Payment } from "../../../types/Payment";
-import Loader from "../../../components/Loader/Loader";
+import Loader from "../../../components/Common/Loader/Loader";
 
 const Payments = () => {
   const { user } = useAuth();

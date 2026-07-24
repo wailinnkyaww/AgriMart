@@ -4,7 +4,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { getUserNotifications } from "../../../services/notificationService";
 import type { Notification } from "../../../types/Notification";
 import NotificationCard from "./NotificationCard/NotificationCard";
-import Loader from "../../../components/Loader/Loader";
+import Loader from "../../../components/Common/Loader/Loader";
 
 const Notifications = () => {
   const { user } = useAuth();

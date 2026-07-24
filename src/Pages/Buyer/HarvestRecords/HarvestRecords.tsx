@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import "./HarvestRecords.css";
 import { useAuth } from "../../../context/AuthContext";
 import { getContracts } from "../../../services/contractService";
-import { getHarvests, deleteHarvest } from "../../../services/harvestService";
+import { getHarvests } from "../../../services/harvestService";
 import type { Harvest } from "../../../types/Harvest";
 import HarvestCard from "../../../components/HarvestCard/HarvestCard";
-import EditHarvestModal from "../../../components/EditHarvestModal/EditHarvestModal";
+import EditHarvestModal from "../../../components/Modals/EditHarvestModal/EditHarvestModal";
 import SkeletonCard from "../../../components/Skeleton/SkeletonCard";
 
 const HarvestRecords = () => {
@@ -75,13 +75,13 @@ const HarvestRecords = () => {
             <HarvestCard
               key={harvest.id}
               harvest={harvest}
-              isFarmer
+              isFarmer={false}
               onRefresh={loadHarvests}
-              onEdit={(harvest) => {
-                setSelectedHarvest(harvest);
-                setShowEditModal(true);
-              }}
-              onDelete={deleteHarvest}
+              // onEdit={(harvest) => {
+              //   setSelectedHarvest(harvest);
+              //   setShowEditModal(true);
+              // }}
+              // onDelete={deleteHarvest}
             />
           ))}
         </div>

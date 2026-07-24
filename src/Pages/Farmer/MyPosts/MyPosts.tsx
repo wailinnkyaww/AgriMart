@@ -7,8 +7,8 @@ import { getFarmerPosts, deletePost } from "../../../services/postService";
 
 import type { Post } from "../../../types/Post";
 
-import CreatePostModal from "../../../components/CreatePostModal/CreatePostModal";
-import Loader from "../../../components/Loader/Loader";
+import CreatePostModal from "../../../components/Modals/CreatePostModal/CreatePostModal";
+import Loader from "../../../components/Common/Loader/Loader";
 
 const MyPosts = () => {
   const { user } = useAuth();
