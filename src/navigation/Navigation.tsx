@@ -24,7 +24,7 @@ import Reports from "../pages/Farmer/Reports/Reports";
 
 import BuyerDashboard from "../pages/Buyer/Dashboard/Dashboard";
 import ContractRequest from "../pages/Buyer/ContractRequests/ContractRequests";
-import Farmers from "../pages/Buyer/FarmerPosts/FarmerPosts";
+// import Farmers from "../pages/Buyer/FarmerPosts/FarmerPosts";
 import AdminNotifications from "../pages/Buyer/Notifications/Notifications";
 import BuyerPayment from "../pages/Buyer/Payment/Payments";
 import BuyerProfile from "../pages/Buyer/BuyerProfile/BuyerProfile";
