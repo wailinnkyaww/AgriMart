@@ -83,7 +83,10 @@ function Header({ toggleSidebar }: Props) {
                     Home
                   </Link>
 
-                  <Link to="/AllPost" onClick={() => setShowMobileLinks(false)}>
+                  <Link
+                    to="/all-posts"
+                    onClick={() => setShowMobileLinks(false)}
+                  >
                     Posts
                   </Link>
 

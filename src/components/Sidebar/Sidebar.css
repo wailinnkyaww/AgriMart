@@ -1,22 +1,10 @@
 .sidebar {
-  width: 200px;
-  height: calc(100vw-65px);
-  margin-top: 65px;
-  overflow-y: auto;
-  background-color: #57970e;
-}
-
-.inner-sidebar {
   position: fixed;
-}
-
-
-.home-sidebar {
-  position: fixed;
-  top: 65px;
+  top: 60px;
   left: 0;
+  padding: 15px 0 10px 0;
   width: 200px;
-  height: calc(100vw - 65px);
+  height: 100%vw;
   background: #57970e;
   z-index: 9997;
   overflow-y: auto;

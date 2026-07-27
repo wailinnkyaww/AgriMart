@@ -54,13 +54,12 @@ function Layout() {
           display: "flex",
         }}
       >
-        {user && sidebarOpen && (
-          <Sidebar className={isHomePage ? "home-sidebar" : "sidebar"} />
-        )}
+        {user && sidebarOpen && <Sidebar />}
         <main
           className="main-content"
           style={{
             flex: 1,
+            width: "100%",
             maxWidth: "1520px",
             margin: "0 auto",
             marginTop: "65px",
