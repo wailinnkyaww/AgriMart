@@ -18,7 +18,6 @@ export const registerSchema = yup.object({
   fullName: yup
     .string()
     .required("Full name is required.")
-    .matches(/^(?!\s*$).+$/, "Full name cannot be empty or only spaces.")
     .matches(/^[A-Za-z\s]+$/, "Full name must contain only letters and spaces.")
     .min(2, "Full name must be at least 2 characters."),
 
@@ -51,26 +50,38 @@ export const registerSchema = yup.object({
 
 const RegisterForm = ({ onSuccess, onSwitchLogin }: Props) => {
   const [step, setStep] = useState<"selection" | "register">("selection");
+
   const [role, setRole] = useState<"Buyer" | "Farmer" | null>(null);
 
-  // Form states
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [phone, setPhone] = useState("");
+
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+
   const [regLoading, setRegLoading] = useState(false);
 
   const { register } = useAuth();
+
   const navigate = useNavigate();
+
+  // ========================================
+  // SELECT ROLE
+  // ========================================
 
   const handleRoleSelect = (selectedRole: "Buyer" | "Farmer") => {
     setRole(selectedRole);
     setStep("register");
     setErrorMsg("");
+    setSuccessMsg("");
   };
+
+  // ========================================
+  // REGISTER
+  // ========================================
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,7 +90,10 @@ const RegisterForm = ({ onSuccess, onSwitchLogin }: Props) => {
     setSuccessMsg("");
 
     try {
-      // Validate form data using Yup
+      // ====================================
+      // VALIDATE FORM
+      // ====================================
+
       await registerSchema.validate(
         {
           role,
@@ -94,30 +108,58 @@ const RegisterForm = ({ onSuccess, onSwitchLogin }: Props) => {
         },
       );
 
+      // ====================================
+      // START LOADING
+      // ====================================
+
       setRegLoading(true);
+
+      // ====================================
+      // CREATE ACCOUNT
+      // ====================================
 
       await register(email, password, fullName, role!, phone);
 
-      setSuccessMsg("Registration successful! Redirecting...");
+      // ====================================
+      // EMAIL VERIFICATION MESSAGE
+      // ====================================
+
+      setSuccessMsg(
+        "Registration successful! A verification email has been sent to your email address. Please verify your email before logging in.",
+      );
+
+      // ====================================
+      // CLEAR FORM
+      // ====================================
+
+      setPassword("");
+      setConfirmPassword("");
+
+      // ====================================
+      // GO TO LOGIN
+      // ====================================
 
       setTimeout(() => {
         onSuccess?.();
 
-        if (role === "Buyer") {
-          navigate("/buyer/dashboard");
-        } else {
-          navigate("/farmer/dashboard");
-        }
-      }, 1000);
+        navigate("/login");
+      }, 3000);
     } catch (err: any) {
-      // Yup validation error
+      // ====================================
+      // YUP VALIDATION ERROR
+      // ====================================
+
       if (err instanceof yup.ValidationError) {
         setErrorMsg(err.message);
+
         return;
       }
 
-      // Firebase registration error
-      console.error(err);
+      // ====================================
+      // FIREBASE ERROR
+      // ====================================
+
+      console.error("Registration error:", err);
 
       let message = "Failed to register. Please try again.";
 
@@ -125,8 +167,8 @@ const RegisterForm = ({ onSuccess, onSwitchLogin }: Props) => {
         message = "This email is already registered.";
       } else if (err.code === "auth/invalid-email") {
         message = "Invalid email address format.";
-      } else if (err.response?.data?.message) {
-        message = err.response.data.message;
+      } else if (err.code === "auth/weak-password") {
+        message = "Password is too weak.";
       } else if (err.message) {
         message = err.message;
       }
@@ -139,13 +181,19 @@ const RegisterForm = ({ onSuccess, onSwitchLogin }: Props) => {
 
   return (
     <div className="register-container">
+      {/* ========================================
+          ROLE SELECTION
+      ======================================== */}
+
       {step === "selection" && (
-        <div className="selection-card">
-          <h1>Welcome!</h1>
+        <div className="role-selection">
+          <h2>Welcome!</h2>
+
           <p>Please choose your role:</p>
 
           <div className="role-buttons">
             <button
+              type="button"
               onClick={() => handleRoleSelect("Buyer")}
               className="buyer-btn"
             >
@@ -153,6 +201,7 @@ const RegisterForm = ({ onSuccess, onSwitchLogin }: Props) => {
             </button>
 
             <button
+              type="button"
               onClick={() => handleRoleSelect("Farmer")}
               className="farmer-btn"
             >
@@ -162,12 +211,19 @@ const RegisterForm = ({ onSuccess, onSwitchLogin }: Props) => {
         </div>
       )}
 
+      {/* ========================================
+          REGISTRATION FORM
+      ======================================== */}
+
       {step === "register" && (
         <div className="register-card">
           <h2>Register as {role}</h2>
 
+          {/* ERROR MESSAGE */}
+
           {errorMsg && (
             <div
+              className="error-message"
               style={{
                 color: "#ef4444",
                 backgroundColor: "#fee2e2",
@@ -181,8 +237,12 @@ const RegisterForm = ({ onSuccess, onSwitchLogin }: Props) => {
               {errorMsg}
             </div>
           )}
+
+          {/* SUCCESS MESSAGE */}
+
           {successMsg && (
             <div
+              className="success-message"
               style={{
                 color: "#16a34a",
                 backgroundColor: "#dcfce7",
@@ -198,10 +258,14 @@ const RegisterForm = ({ onSuccess, onSwitchLogin }: Props) => {
           )}
 
           <form className="register-form" onSubmit={handleRegister}>
+            {/* FULL NAME */}
+
             <label htmlFor="fullname">
               {role === "Buyer" ? "Company / Full Name" : "Full Name"}
             </label>
+
             <input
+              id="fullname"
               type="text"
               placeholder="Full Name"
               value={fullName}
@@ -210,8 +274,12 @@ const RegisterForm = ({ onSuccess, onSwitchLogin }: Props) => {
               required
             />
 
+            {/* EMAIL */}
+
             <label htmlFor="email">Email</label>
+
             <input
+              id="email"
               type="email"
               placeholder="Email"
               value={email}
@@ -220,17 +288,26 @@ const RegisterForm = ({ onSuccess, onSwitchLogin }: Props) => {
               required
             />
 
-            <label htmlFor="phone">Phone (Optional)</label>
+            {/* PHONE */}
+
+            <label htmlFor="phone">Phone</label>
+
             <input
+              id="phone"
               type="text"
-              placeholder="Phone number"
+              placeholder="09xxxxxxxxx"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               disabled={regLoading}
+              required
             />
 
+            {/* PASSWORD */}
+
             <label htmlFor="password">Password</label>
+
             <input
+              id="password"
               type="password"
               placeholder="Password"
               value={password}
@@ -239,8 +316,12 @@ const RegisterForm = ({ onSuccess, onSwitchLogin }: Props) => {
               required
             />
 
+            {/* CONFIRM PASSWORD */}
+
             <label htmlFor="confirm-password">Confirm Password</label>
+
             <input
+              id="confirm-password"
               type="password"
               placeholder="Confirm Password"
               value={confirmPassword}
@@ -249,10 +330,15 @@ const RegisterForm = ({ onSuccess, onSwitchLogin }: Props) => {
               required
             />
 
+            {/* TERMS */}
+
             <label className="checkbox-group">
               <input type="checkbox" required disabled={regLoading} />
+
               <span>I agree to the terms</span>
             </label>
+
+            {/* BUTTONS */}
 
             <div className="form-buttons">
               <button
@@ -273,12 +359,16 @@ const RegisterForm = ({ onSuccess, onSwitchLogin }: Props) => {
               </button>
             </div>
           </form>
+
+          {/* LOGIN */}
+
           <p className="register-text">
             Already have an account?{" "}
             <button
               type="button"
               className="register-link"
               onClick={onSwitchLogin}
+              disabled={regLoading}
             >
               Login
             </button>

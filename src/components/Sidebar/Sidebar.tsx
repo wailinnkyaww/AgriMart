@@ -82,10 +82,8 @@ function Sidebar() {
 
   return (
     <aside className="sidebar">
-      {" "}
       {profile && (
         <div className="sidebar-user">
-          {" "}
           <img
             src={
               profile.profileImage ||
@@ -93,134 +91,102 @@ function Sidebar() {
             }
             alt={profile.fullName}
             className="sidebar-avatar"
-          />{" "}
+          />
           <div className="sidebar-user-info">
-            {" "}
-            <h3> {profile.fullName}</h3> <span> {profile.role}</span>{" "}
-          </div>{" "}
+            <h3> {profile.fullName}</h3> <span> {profile.role}</span>
+          </div>
         </div>
       )}
       {user ? (
         <ul className="sidebar-menu">
-          {" "}
           {/* ================= ADMIN ================= */}
           {user.role === "Admin" && (
             <>
-              {" "}
               <li>
-                {" "}
                 <Link className="link" to="/admin/dashboard">
-                  {" "}
-                  Dashboard{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Dashboard
+                </Link>
+              </li>
               <li>
-                {" "}
                 <Link className="link" to="/admin/profile">
-                  {" "}
-                  Profile{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Profile
+                </Link>
+              </li>
               <li>
-                {" "}
                 <Link className="link" to="/admin/farmers">
-                  {" "}
-                  Manage Farmers{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Manage Farmers
+                </Link>
+              </li>
               <li>
-                {" "}
                 <Link className="link" to="/admin/buyers">
-                  {" "}
-                  Manage Buyers{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Manage Buyers
+                </Link>
+              </li>
               <li>
-                {" "}
                 <Link className="link" to="/admin/contracts">
-                  {" "}
-                  Contracts{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Contracts
+                </Link>
+              </li>
               <li>
-                {" "}
                 <Link className="link" to="/admin/harvests">
-                  {" "}
-                  Harvest Records{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Harvest Records
+                </Link>
+              </li>
               <li>
-                {" "}
                 <Link className="link" to="/admin/payment">
-                  {" "}
-                  Payments{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Payments
+                </Link>
+              </li>
               <li>
-                {" "}
                 <Link className="link" to="/admin/reports">
-                  {" "}
-                  Reports{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Reports
+                </Link>
+              </li>
               <li>
-                {" "}
                 <Link className="link" to="/admin/settings">
-                  {" "}
-                  Settings{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Settings
+                </Link>
+              </li>
             </>
           )}
           {/* ================= BUYER ================= */}
           {user.role === "Buyer" && (
             <>
-              {" "}
               <li>
-                {" "}
                 <Link className="link" to="/buyer/dashboard">
-                  {" "}
-                  Dashboard{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Dashboard
+                </Link>
+              </li>
               {/* <li>
                   <Link className="link" to="/buyer/create-contract">
                     Create Contract
                   </Link>
                 </li> */}
               <li>
-                {" "}
                 <Link className="link" to="/buyer/profile">
-                  {" "}
-                  Profile{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Profile
+                </Link>
+              </li>
               <li>
-                {" "}
                 <Link className="link" to="/buyer/contracts">
-                  {" "}
-                  Contract Requests{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Contract Requests
+                </Link>
+              </li>
               {/* <li>
                   <Link className="link" to="/buyer/farmers">
                     Farmers
                   </Link>
                 </li> */}
               <li>
-                {" "}
                 <Link className="link" to="/buyer/farmer-posts">
-                  {" "}
-                  Farmer Posts{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Farmer Posts
+                </Link>
+              </li>
               <li>
-                {" "}
                 <Link className="link" to="/buyer/harvestRecords">
-                  {" "}
-                  Harvest Records{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Harvest Records
+                </Link>
+              </li>
               {/* <li>
                   <Link className="link" to="/buyer/purchases">
                     Rice Purchases
@@ -233,12 +199,10 @@ function Sidebar() {
                   </Link>
                 </li> */}
               <li>
-                {" "}
                 <Link className="link" to="/buyer/reports">
-                  {" "}
-                  Reports{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Reports
+                </Link>
+              </li>
               {/* <li>
                   <Link className="link" to="/buyer/notifications">
                     Notifications
@@ -249,56 +213,41 @@ function Sidebar() {
           {/* ================= FARMER ================= */}
           {user.role === "Farmer" && (
             <>
-              {" "}
               <li>
-                {" "}
                 <Link className="link" to="/farmer/dashboard">
-                  {" "}
-                  Dashboard{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Dashboard
+                </Link>
+              </li>
               <li>
-                {" "}
                 <Link className="link" to="/farmer/profile">
-                  {" "}
-                  Profile{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Profile
+                </Link>
+              </li>
               <li>
-                {" "}
                 <Link className="link" to="/farmer/farmer-posts">
-                  {" "}
-                  My Posts{" "}
-                </Link>{" "}
-              </li>{" "}
+                  My Posts
+                </Link>
+              </li>
               <li>
-                {" "}
                 <Link className="link" to="/farmer/contract-proposals">
-                  {" "}
-                  Contract Proposals{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Contract Proposals
+                </Link>
+              </li>
               <li>
-                {" "}
                 <Link className="link" to="/farmer/myContracts">
-                  {" "}
-                  My Contracts{" "}
-                </Link>{" "}
-              </li>{" "}
+                  My Contracts
+                </Link>
+              </li>
               <li>
-                {" "}
                 <Link className="link" to="/farmer/myApplications">
-                  {" "}
-                  My Applications{" "}
-                </Link>{" "}
-              </li>{" "}
+                  My Applications
+                </Link>
+              </li>
               <li>
-                {" "}
                 <Link className="link" to="/farmer/harvestRecords">
-                  {" "}
-                  Harvest Records{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Harvest Records
+                </Link>
+              </li>
               {/* <li>
                   <Link className="link" to="/farmer/payment">
                     Payments
@@ -311,12 +260,10 @@ function Sidebar() {
                   </Link>
                 </li> */}
               <li>
-                {" "}
                 <Link className="link" to="/farmer/reports">
-                  {" "}
-                  Reports{" "}
-                </Link>{" "}
-              </li>{" "}
+                  Reports
+                </Link>
+              </li>
               {/* <li>
                   <Link className="link" to="/farmer/notifications">
                     Notifications
@@ -327,13 +274,11 @@ function Sidebar() {
         </ul>
       ) : (
         <div className="sidebar-login-message">
-          {" "}
-          Please{" "}
+          Please
           <Link className="login-link" to="/login">
-            {" "}
-            login{" "}
-          </Link>{" "}
-          to access your dashboard.{" "}
+            login
+          </Link>
+          to access your dashboard.
         </div>
       )}
     </aside>

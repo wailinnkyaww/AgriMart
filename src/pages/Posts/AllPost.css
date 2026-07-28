@@ -1,0 +1,381 @@
+/* ========================================
+   Farmer Posts Page
+======================================== */
+
+.farmer-posts-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   Header
+======================================== */
+
+.farmer-posts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.farmer-posts-header h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.farmer-posts-header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ========================================
+   Posts Grid
+======================================== */
+
+.farmer-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+  width: 100%;
+}
+
+/* ========================================
+   Post Card
+======================================== */
+
+.farmer-post-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.farmer-post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   Image
+======================================== */
+
+.farmer-post-image-container {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+.farmer-post-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.farmer-post-card:hover .farmer-post-image {
+  transform: scale(1.05);
+}
+
+/* ========================================
+   Available Badge
+======================================== */
+
+.available-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #16a34a;
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ========================================
+   Card Content
+======================================== */
+
+.farmer-post-content {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.farmer-post-content h2 {
+  margin: 0 0 10px;
+  font-size: 21px;
+  font-weight: 700;
+  color: #1f2937;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+/* ========================================
+   Crop
+======================================== */
+
+.post-crop {
+  margin: 0 0 18px;
+  color: #15803d;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ========================================
+   Post Details
+======================================== */
+
+.farmer-post-details {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background: #f9fafb;
+  border-radius: 10px;
+  border-left: 4px solid #16a34a;
+}
+
+.farmer-post-details p {
+  margin: 0;
+  color: #4b5563;
+  font-size: 14px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.farmer-post-details strong {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+/* ========================================
+   Description
+======================================== */
+
+.farmer-post-description {
+  margin: 0 0 20px;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.7;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ========================================
+   Send Contract Button
+======================================== */
+
+.send-contract-btn {
+  width: 100%;
+  margin-top: auto;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #16a34a;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    transform 0.2s ease,
+    box-shadow 0.3s ease;
+}
+
+.send-contract-btn:hover {
+  background: #15803d;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 12px rgba(22, 163, 74, 0.25);
+}
+
+.send-contract-btn:active {
+  transform: translateY(0);
+}
+
+.send-contract-btn:focus {
+  outline: 3px solid rgba(22, 163, 74, 0.25);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   Farmer View Message
+======================================== */
+
+.farmer-post-view-message {
+  margin-top: auto;
+  padding: 12px 15px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* ========================================
+   Empty State
+======================================== */
+
+.farmer-posts-empty {
+  width: 100%;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px dashed #d1d5db;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  background: #f0fdf4;
+  border-radius: 50%;
+  font-size: 40px;
+}
+
+.farmer-posts-empty h2 {
+  margin: 0 0 10px;
+  color: #1f2937;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.farmer-posts-empty p {
+  margin: 0;
+  max-width: 500px;
+  color: #6b7280;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ========================================
+   Tablet
+======================================== */
+
+@media (max-width: 1100px) {
+  .farmer-posts-container {
+    padding: 25px;
+  }
+
+  .farmer-posts-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .farmer-post-image-container {
+    height: 210px;
+  }
+}
+
+/* ========================================
+   Mobile
+======================================== */
+
+@media (max-width: 700px) {
+  .farmer-posts-container {
+    padding: 20px 15px;
+  }
+
+  .farmer-posts-header {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+  }
+
+  .farmer-posts-header h1 {
+    font-size: 26px;
+  }
+
+  .farmer-posts-header p {
+    font-size: 14px;
+  }
+
+  .farmer-posts-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .farmer-post-image-container {
+    height: 220px;
+  }
+
+  .farmer-post-content {
+    padding: 18px;
+  }
+
+  .farmer-post-content h2 {
+    font-size: 19px;
+  }
+}
+
+/* ========================================
+   Small Mobile
+======================================== */
+
+@media (max-width: 400px) {
+  .farmer-posts-container {
+    padding: 15px 10px;
+  }
+
+  .farmer-posts-header h1 {
+    font-size: 23px;
+  }
+
+  .farmer-post-image-container {
+    height: 190px;
+  }
+
+  .farmer-post-content {
+    padding: 15px;
+  }
+
+  .farmer-post-details {
+    padding: 12px;
+  }
+
+  .farmer-post-details p {
+    font-size: 13px;
+  }
+
+  .send-contract-btn {
+    font-size: 14px;
+    padding: 11px 15px;
+  }
+}

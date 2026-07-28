@@ -110,7 +110,7 @@ const Contracts = () => {
         <div className="contracts-header">
           <h1>Available Contracts</h1>
           {/* <p>Browse available farming contracts and apply.</p> */}
-          {user.role === "Buyer" && (
+          {user?.role === "Buyer" && (
             <button
               className="create-btn"
               onClick={() => setIsCreateModalOpen(true)}

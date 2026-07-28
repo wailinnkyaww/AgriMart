@@ -1,16 +1,13 @@
 import { Routes, Route } from "react-router-dom";
 import AdminDashboard from "../pages/Admin/AdminDashboard";
 import AdminProfile from "../pages/Admin/AdminProfile";
-import UserProfile from "../pages/User/UserProfile";
 import AllPost from "../pages/Posts/AllPost";
 import Home from "../pages/Public/Home";
 import Register from "../components/Auth/RegisterForm/RegisterForm";
 import Login from "../components/Auth/LoginForm/LoginForm";
 import Contracts from "../pages/Contracts/Contracts"; //to show all contracts
-//import CreateContracts from "../pages/Contracts/CreateContract/CreateContract"; //create new contractsz
 import BuyerFarmerPosts from "../pages/Buyer/FarmerPosts/FarmerPosts";
-import { PostDetail } from "../pages/Posts/PostDetail";
-
+import ForgotPassword from "../components/Auth/ForgotPassword/ForgotPassword";
 import FarmerPosts from "../pages/Farmer/MyPosts/MyPosts";
 import ContractProposals from "../pages/Farmer/ContractProposals/ContractProposals";
 import Dashboard from "../pages/Farmer/Dashboard/Dashboard";
@@ -24,7 +21,6 @@ import Reports from "../pages/Farmer/Reports/Reports";
 
 import BuyerDashboard from "../pages/Buyer/Dashboard/Dashboard";
 import ContractRequest from "../pages/Buyer/ContractRequests/ContractRequests";
-// import Farmers from "../pages/Buyer/FarmerPosts/FarmerPosts";
 import AdminNotifications from "../pages/Buyer/Notifications/Notifications";
 import BuyerPayment from "../pages/Buyer/Payment/Payments";
 import BuyerProfile from "../pages/Buyer/BuyerProfile/BuyerProfile";
@@ -41,14 +37,11 @@ export const AppRoutes = () => (
     <Route path="/" element={<Home />} />
     <Route path="/register" element={<Register />} />
     <Route path="/login" element={<Login />} />
+    <Route path="/forgot-password" element={<ForgotPassword />} />
     <Route path="/all-posts" element={<AllPost />} />
-    {/* <Route path="/farmerPost" element={<FarmerPost />} /> */}
-    <Route path="/farmerPostDetails/:id" element={<PostDetail />} />
     <Route path="/contracts" element={<Contracts />} /> //create contracts
-    {/* <Route path="/contracts" element={<CreateContract />} /   //all contracts */}
     <Route path="/admin/dashboard" element={<AdminDashboard />} />
     <Route path="/adminProfile" element={<AdminProfile />} />
-    <Route path="/userProfile" element={<UserProfile />} />
     {/* farmer route */}
     <Route path="/farmer/farmer-posts" element={<FarmerPosts />} />
     <Route path="/farmer/contract-proposals" element={<ContractProposals />} />

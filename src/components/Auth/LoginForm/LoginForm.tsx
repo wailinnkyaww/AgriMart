@@ -161,6 +161,17 @@ const LoginForm = ({ onSuccess, onSwitchRegister }: Props) => {
             required
           />
         </div>
+        <div className="forgot-password-link">
+          <button
+            type="button"
+            onClick={(e) => {
+              navigate("forgot-password");
+              onSuccess = { onClose };
+            }}
+          >
+            Forgot Password?
+          </button>
+        </div>
 
         <button type="submit" className="login-btn" disabled={loginLoading}>
           {loginLoading ? "Logging in..." : "Login"}
